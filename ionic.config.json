@@ -1,0 +1,7 @@
+{
+  "name": "skillUp-application",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
