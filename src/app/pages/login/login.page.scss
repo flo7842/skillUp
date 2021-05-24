@@ -1,0 +1,79 @@
+.errorField {
+    border-bottom: #ff0062;
+    
+    --highlight-background: #ff0062;
+}
+.goodField {
+border-bottom: #12eb48;
+--border-color: #12eb48;
+--highlight-background: #12eb48;
+}
+h1, h2{
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 5rem;
+}
+
+ion-content{
+   
+    --background: #fff url('../../../assets/image/fond.png') no-repeat center center / cover;
+    .container{
+        margin: 0 35px 0 35px;
+        .top-row{
+            ion-col{
+                margin-top: 3rem;
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: center;
+            }
+        }
+
+        .form{
+            ion-item{
+                --padding-start: 0px;
+            }
+        }
+    
+        .forgot-password{
+            margin-top: 8px;
+            font-size: 0.8rem;
+            display: block;
+            text-align: end;
+        }
+
+        .login-row{
+            ion-button{
+                margin-top: 1rem;
+                width: 100%;
+                border-radius: 10px;
+            }
+
+        }
+
+        .log-external{
+            text-align: center;
+            display: block;
+            margin-bottom: 2rem;
+            h2{
+                margin-top: 2rem;
+            }
+            ion-col{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                ion-icon{
+                    font-size: 2rem;
+                    margin: 0 15px 0 15px;
+                }
+                .fb{
+                    color: #124093;
+                }
+            }
+        }
+        a{
+            font-size: 0.8rem;
+        }
+    }
+}
