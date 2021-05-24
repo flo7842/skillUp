@@ -1,0 +1,60 @@
+
+<ion-content>
+
+  <ion-row class="logo">
+</ion-row>
+      <ion-row class="form">
+          <ion-col size="12">
+            <ion-item [ngClass]="isErrorMail ? 'errorField' : 'goodField'">
+              <ion-label position="floating">email</ion-label>
+              <ion-input type="email" (keyup)="checkEmail()" [(ngModel)]="user.email"></ion-input>
+            </ion-item>
+            <ion-item [ngClass]="isErrorPassword ? 'errorField' : 'goodField'">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="password" (keyup)="checkPassword()" [(ngModel)]="user.user_password"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Nom</ion-label>
+              <ion-input type="text" [(ngModel)]="user.lastname"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Prénom</ion-label>
+              <ion-input type="text" [(ngModel)]="user.firstname"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">avatar</ion-label>
+              <ion-input type="text" [(ngModel)]="user.avatar"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Date d'anniversaire</ion-label>
+              <ion-input type="date" [(ngModel)]="user.birth_date"></ion-input>
+            </ion-item>
+            <ion-item [ngClass]="isErrorPhone ? 'errorField' : 'goodField'">
+              <ion-label position="floating">Tel</ion-label>
+              <ion-input type="tel" (keyup)="checkPhone()" [(ngModel)]="user.phone_number"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Nom rue</ion-label>
+              <ion-input type="text" [(ngModel)]="user.street_name"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">N° rue</ion-label>
+              <ion-input type="text" [(ngModel)]="user.street_number"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Batiment</ion-label>
+              <ion-input type="text" [(ngModel)]="user.batiment"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Code Postal</ion-label>
+              <ion-input type="text" [(ngModel)]="user.postal_code"></ion-input>
+            </ion-item>
+           
+              
+          </ion-col>
+          <ion-col size="12">
+              <ion-button [disabled]="isErrorMail || isErrorPhone || isErrorPassword" (click)="register()" expand="full">S'inscrire</ion-button>
+          </ion-col>
+      </ion-row>
+      <p> <a routerLink="/login">Vous êtes déjà inscrit ? Connectez-vous</a> </p>
+  </ion-content>

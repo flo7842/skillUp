@@ -1,0 +1,48 @@
+<ion-content>
+    <div class="container">
+
+        <ion-row align-items-center class="top-row">
+            <ion-col size="12">
+                <ion-item>
+                    <ion-thumbnail>
+                        <img src="../../../assets/image/skillup-logo.png">
+                      </ion-thumbnail>              
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row class="form">
+            <h1>Connection à votre compte</h1>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input type="email" [(ngModel)]="email"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input type="password" [(ngModel)]="password"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row class="mdp" class="forgot-password">
+            <span (click)="forgotPassword()" size="12">Mot de passe oublié ?</span>
+        </ion-row>
+    
+        <ion-row class="login-row">
+        <ion-col>
+            <ion-button (click)="loginForm()">Connexion</ion-button>
+        </ion-col>
+        
+        </ion-row>
+        <ion-row class="log-external" size="12">
+            <h2>Ou connectez-vous avec</h2>
+            <ion-col size="12">
+                <ion-icon name="logo-facebook" class="fb"></ion-icon>
+                <ion-icon name="logo-google"></ion-icon>
+            </ion-col>
+        </ion-row>
+       <a routerLink="/register">Vous n'avez pas compte ? Inscrivez-vous</a>
+    </div>
+
+
+
+</ion-content>

@@ -1,0 +1,10 @@
+.errorField {
+        border-bottom: #ff0062;
+        
+        --highlight-background: #ff0062;
+    }
+.goodField {
+    border-bottom: #12eb48;
+    --border-color: #12eb48;
+    --highlight-background: #12eb48;
+}

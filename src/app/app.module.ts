@@ -6,12 +6,17 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
+import { ​​HttpClientModule​​ } from '@angular/common/http';
+
+import { ForgotPasswordComponent } from './modals/forgot-password/forgot-password.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  declarations: [AppComponent, ForgotPasswordComponent],
+  entryComponents: [ForgotPasswordComponent],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ​​HttpClientModule​​, FormsModule],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NativeStorage],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
