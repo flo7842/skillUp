@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 
-import { UserService } from '../../service/user.service';
+import { UserService } from '../../service/user/user.service';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { User } from '../../interfaces/user';
 

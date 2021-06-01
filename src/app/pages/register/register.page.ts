@@ -3,7 +3,7 @@ import { ToastController } from '@ionic/angular';
 
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../../service/auth/auth.service';
 import { User } from '../../interfaces/user';
 
 @Component({

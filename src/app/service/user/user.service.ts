@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../interfaces/user';
+import { User } from '../../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { User } from '../interfaces/user';
 export class UserService {
 
   url: string = "http://localhost:3000/api";
-  toto: any
+  user: any
   constructor(private http: HttpClient) { }
 
   getUserByRole(id: number) {
@@ -20,12 +20,12 @@ export class UserService {
             
             rejects(false)
            }else{
-            this.toto = data.data
-            tabRole.push(this.toto.Roles);
-            let tp = search("admin",tabRole[0])
+            this.user = data.data
+            tabRole.push(this.user.Roles);
+            let roles = search("admin",tabRole[0])
             
             
-            resolve(tp);
+            resolve(roles);
            }
         });
     });

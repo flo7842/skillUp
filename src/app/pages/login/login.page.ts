@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { ModalController, Platform, ToastController } from '@ionic/angular';
 import { ForgotPasswordComponent } from '../../modals/forgot-password/forgot-password.component';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../../service/auth/auth.service';
 import { Router } from '@angular/router';
 import { User } from '../../interfaces/user';
 
@@ -60,7 +60,7 @@ export class LoginPage implements OnInit {
       
       if (this.platform.is("desktop")) {
         await localStorage.setItem('user', JSON.stringify(this.userAppli))
-        await localStorage.setItem('token', JSON.stringify(this.tokenjwt))
+        await localStorage.setItem('token', this.tokenjwt)
       } else {
         await this.storage.setItem('user', JSON.stringify(this.userAppli))
         await this.storage.setItem('token', JSON.stringify(this.tokenjwt))
