@@ -1,4 +1,7 @@
-export interface Company {
+export interface Invoice {
     id: number;
-    invoice_date
+    invoice_date: string;
+    CompanyId: number;
+    UserId: number;
+    CommandId: number;
 }

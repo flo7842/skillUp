@@ -11,7 +11,7 @@ export class CourseService {
   token: string;
   constructor(private http: HttpClient) { }
 
-  async getCourse(): Promise <Course[]>{
+  async getData(): Promise <Course[]>{
 
     
     this.token = await localStorage.getItem("token")

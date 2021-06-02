@@ -10,15 +10,15 @@ import { CourseService } from '../course/course.service';
 })
 export class CartService {
 
-  url: string = "http://localhost:3000/api";
-  private cart = [];
-  private cartItemCount = new BehaviorSubject(0);
+	url: string = "http://localhost:3000/api";
+	private cart = [];
+	private cartItemCount = new BehaviorSubject(0);
 	course: Course[];
 
-  constructor(private http: HttpClient, private courseService: CourseService) { }
+  	constructor(private http: HttpClient, private courseService: CourseService) { }
 
-  async getProducts(): Promise<Course[]> {
-		return this.course = await this.courseService.getCourse();
+  	async getProducts(): Promise<Course[]> {
+		return this.course = await this.courseService.getData();
 		
 
 	}
@@ -79,21 +79,21 @@ export class CartService {
 		}
 	}
 
-  createCommand(UserId: number, taxe: number){
-    return new Promise((resolve, rejects) => {
-			this.http.post(this.url + '/command', { UserId: UserId, taxe: taxe }).subscribe((data: any) => {
-				//(!data.success) ? rejects(false): resolve(data);
-				console.log(data)
-				if(!data){
-				rejects(false)
-				}else{
-				resolve(data);
-				}
-				//(!data.success) ? rejects(false): resolve(data);
-				
-			});
-		})
-  }
+	createCommand(UserId: number){
+		return new Promise((resolve, rejects) => {
+				this.http.post(this.url + '/command', { UserId: UserId }).subscribe((data: any) => {
+					//(!data.success) ? rejects(false): resolve(data);
+					console.log(data)
+					if(!data){
+					rejects(false)
+					}else{
+					resolve(data);
+					}
+					//(!data.success) ? rejects(false): resolve(data);
+					
+				});
+			})
+	}
 
 	addCart(quantity: number, CommandId: number, CourseId: number){
 		return new Promise((resolve, rejects) => {

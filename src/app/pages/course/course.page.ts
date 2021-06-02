@@ -16,7 +16,7 @@ export class CoursePage implements OnInit {
   constructor(private course: CourseService, private cartService: CartService) { }
 
   async ngOnInit() {
-    this.courses = await this.course.getCourse();
+    this.courses = await this.course.getData();
     console.log(this.courses)
   }
 
@@ -33,7 +33,7 @@ export class CoursePage implements OnInit {
     const cartStorage = await JSON.parse(localStorage.getItem('cart'));
 
   
-    this.cartService.createCommand(user.id, 19).then(async(command: any) => {
+    this.cartService.createCommand(user.id).then(async(command: any) => {
         this.idCommand = command.message.split(/(\d+)/) 
        console.log(command)
         for(let cart of cartStorage){
