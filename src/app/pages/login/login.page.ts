@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
     private router: Router,
     private platform: Platform,
     private toast: ToastController,
-    private storage: NativeStorage
+    private storage: NativeStorage,
     ) { }
 
   ngOnInit() {
@@ -39,12 +39,12 @@ export class LoginPage implements OnInit {
 
   checkEmail() {
     const regex = new RegExp(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g);
-    this.isErrorMail = (regex.test(this.user.email.trim())) ? false : true;
+    this.isErrorMail = (regex.test(this.email.trim())) ? false : true;
   }
   
   checkPassword() {
     const regex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/g);
-    this.isErrorPassword = (regex.test(this.user.user_password.trim())) ? false : true;
+    this.isErrorPassword = (regex.test(this.password.trim())) ? false : true;
   }
 
 
@@ -70,7 +70,7 @@ export class LoginPage implements OnInit {
       const toast = await this.toast.create({
         message: 'Bienvenue ' + user.data.firstname,
         color: "success",
-        duration: 2000,
+        duration: 1000,
       });
       toast.present();
 
@@ -81,9 +81,9 @@ export class LoginPage implements OnInit {
       
         console.log(err)
         const toast = await this.toast.create({
-          message: "Vous avez mal renseigné le champs email ou password !",
+          message: "Vous avez mal renseigné le champ email ou password !",
           color: "danger",
-          duration: 2000,
+          duration: 1000,
         });
         toast.present();
         

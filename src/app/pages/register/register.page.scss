@@ -8,3 +8,39 @@
     --border-color: #12eb48;
     --highlight-background: #12eb48;
 }
+
+ion-content{
+    color: #020122;
+    font-family:HindSiliguri !important;
+    --background: url('../../../assets/image/fond.png') no-repeat center / cover;
+    .top-row{
+        text-align: center;
+        h1{
+            margin-top: 3rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+    }
+   
+    ion-item{
+        --background: transparent;
+        width: 85%;
+        margin: auto;
+        --padding-start: 0px;
+        ion-input{
+            --placeholder-color: crimson; 
+        }
+    }
+    ion-button{
+        --background: linear-gradient(to left, #7353A2, #9198e5);
+        margin-top: 1rem;
+        width: 100%;
+        font-size: 1.1rem;
+        border-radius: 5px;
+    }
+
+    a{
+        font-size: 1rem;
+        color: #020122;
+    }
+}

@@ -1,25 +1,19 @@
 <ion-content>
     <div class="container">
-
-        <ion-row align-items-center class="top-row">
+        <ion-row class="top-row">
             <ion-col size="12">
-                <ion-item>
-                    <ion-thumbnail>
-                        <img src="../../../assets/image/skillup-logo.png">
-                      </ion-thumbnail>              
-                </ion-item>
+                <h1>Connexion</h1>
             </ion-col>
         </ion-row>
         <ion-row class="form">
-            <h1>Connection à votre compte</h1>
             <ion-col>
                 <ion-item>
                     <ion-label position="floating">Email</ion-label>
-                    <ion-input type="email" [(ngModel)]="email"></ion-input>
+                    <ion-input type="email" (keyup)="checkEmail()" [(ngModel)]="email"></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-label position="floating">Password</ion-label>
-                    <ion-input type="password" [(ngModel)]="password"></ion-input>
+                    <ion-label position="floating">Mot de passe</ion-label>
+                    <ion-input type="password" (keyup)="checkPassword()" [(ngModel)]="password"></ion-input>
                 </ion-item>
             </ion-col>
         </ion-row>
@@ -28,19 +22,26 @@
         </ion-row>
     
         <ion-row class="login-row">
-        <ion-col>
-            <ion-button (click)="loginForm()">Connexion</ion-button>
-        </ion-col>
-        
+            <ion-col>
+                <ion-button [disabled]="isErrorMail || isErrorPassword" (click)="loginForm()">Connexion</ion-button>
+            </ion-col>
         </ion-row>
         <ion-row class="log-external" size="12">
             <h2>Ou connectez-vous avec</h2>
             <ion-col size="12">
-                <ion-icon name="logo-facebook" class="fb"></ion-icon>
-                <ion-icon name="logo-google"></ion-icon>
+                <div class="log fb-connect">
+                    <ion-icon name="logo-facebook" class="fb"></ion-icon>
+                </div>
+                <div class="log gg-connect">
+                    <ion-icon name="logo-google"></ion-icon>
+                </div>
             </ion-col>
         </ion-row>
-       <a routerLink="/register">Vous n'avez pas compte ? Inscrivez-vous</a>
+        <ion-row class="ion-text-center">
+            <ion-col>
+                <a routerLink="/register">Vous n'avez pas compte ? Inscrivez-vous</a>
+            </ion-col>
+        </ion-row>
     </div>
 
 

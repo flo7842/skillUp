@@ -35,7 +35,11 @@ export class RegisterPage implements OnInit {
 
   
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(
+    private auth: AuthService, 
+    private router: Router,
+    private toast: ToastController
+    ) { }
 
   ngOnInit() {
   }
@@ -60,10 +64,22 @@ export class RegisterPage implements OnInit {
   async register() {
     this.auth.register(this.user).then(async(data: any) => {
       
+      const toast = await this.toast.create({
+        message: "Inscription réussie !",
+        color: "success",
+        duration: 1000,
+      });
+      toast.present();
+
       this.router.navigate(['/login']);
         
     }).catch(async(err) => {
-      
+      const toast = await this.toast.create({
+        message: "L'inscription à échoué, veuillez recommencer !",
+        color: "danger",
+        duration: 1000,
+      });
+      toast.present();
         console.log(err)
     })
   }
