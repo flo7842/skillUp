@@ -11,10 +11,11 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { ​​HttpClientModule​​ } from '@angular/common/http';
 
 import { ForgotPasswordComponent } from './modals/forgot-password/forgot-password.component';
+import { EditComponent } from './modals/edit/edit.component';
 import { FormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [AppComponent, ForgotPasswordComponent],
-  entryComponents: [ForgotPasswordComponent],
+  declarations: [AppComponent, ForgotPasswordComponent, EditComponent],
+  entryComponents: [ForgotPasswordComponent, EditComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ​​HttpClientModule​​, FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NativeStorage],
   bootstrap: [AppComponent],

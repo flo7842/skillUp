@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../../interfaces/user';
+import { User } from './../../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,9 @@ import { User } from '../../interfaces/user';
 export class UserService {
 
   url: string = "http://localhost:3000/api";
-  user: any
+  user: any;
+  token: string;
+
   constructor(private http: HttpClient) { }
 
   getUserByRole(id: number) {
@@ -37,6 +39,23 @@ export class UserService {
           }
       }
     }
+  }
+
+  edit(id: number, user: User) {
+    return new Promise(async(resolve, rejects) => {
+
+      this.token = await localStorage.getItem("token")
+      
+      this.http.put(this.url + "/user/"+ id, user, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+          //(!data.success) ? rejects(data.message): resolve(data);
+          if(!data){
+        rejects(data)
+      }else{
+        console.log(data)
+        resolve(data);
+      }
+      });
+    });
   }
 
   
