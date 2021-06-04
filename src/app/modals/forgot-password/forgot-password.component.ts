@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
@@ -11,21 +12,41 @@ export class ForgotPasswordComponent implements OnInit {
 
   email: string = "";
 
-  constructor(private auth: AuthService) { }
+  constructor(
+    private auth: AuthService, 
+    private modal: ModalController,
+    private toast: ToastController
+    ) { }
 
   ngOnInit() {}
+
+  close() {
+    this.modal.dismiss({
+        'dismissed': true
+    });
+  }
 
   async resetPass(){
     let toto = await this.email;
     console.log(toto)
     await this.auth.resetPassword(this.email).then(async(user: any) => {
       
-      console.log(user)
-     
+      
+      const toast = await this.toast.create({
+        message: "L'email à bien été envoyé !",
+        color: "success",
+        duration: 1000,
+      });
+      toast.present();
         
     }).catch(async(err) => {
-   
-       
+      const toast = await this.toast.create({
+        message: "L'email n'a pas été envoyé, veuillez recommencer !",
+        color: "danger",
+        duration: 1000,
+      });
+      toast.present();
+       console.log("toto")
     })
 
   }

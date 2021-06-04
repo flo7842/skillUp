@@ -22,9 +22,10 @@ export class RegisterPage implements OnInit {
     id: undefined,
     email: '',
     user_password: '',
+    user_name: '',
     firstname: '',
     lastname: '',
-    avatar: '',
+    avatar: "https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'",
     birth_date: '',
     phone_number: '',
     street_name: '',
@@ -35,7 +36,11 @@ export class RegisterPage implements OnInit {
 
   
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(
+    private auth: AuthService, 
+    private router: Router,
+    private toast: ToastController
+    ) { }
 
   ngOnInit() {
   }
@@ -60,10 +65,22 @@ export class RegisterPage implements OnInit {
   async register() {
     this.auth.register(this.user).then(async(data: any) => {
       
+      const toast = await this.toast.create({
+        message: "Inscription réussie !",
+        color: "success",
+        duration: 1000,
+      });
+      toast.present();
+
       this.router.navigate(['/login']);
         
     }).catch(async(err) => {
-      
+      const toast = await this.toast.create({
+        message: "L'inscription à échoué, veuillez recommencer !",
+        color: "danger",
+        duration: 1000,
+      });
+      toast.present();
         console.log(err)
     })
   }
