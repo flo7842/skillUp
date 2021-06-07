@@ -11,24 +11,10 @@ import { UserService } from '../../service/user/user.service';
 })
 export class EditComponent implements OnInit {
 
-  userStorage = JSON.parse(localStorage.getItem('user'));
 
-  user: User = 
-  { 
-    id: undefined,
-    email: this.userStorage.email,
-    user_password: this.userStorage.user_password,
-    user_name: this.userStorage.user_name,
-    firstname: this.userStorage.firstname,
-    lastname: this.userStorage.lastname,
-    avatar: this.userStorage.avatar,
-    birth_date: this.userStorage.birth_date,
-    phone_number: this.userStorage.phone_number,
-    street_name: this.userStorage.street_name,
-    street_number: this.userStorage.number,
-    batiment: this.userStorage.edifice,
-    postal_code: this.userStorage.postal_code,
-  }
+  userStorage: any;
+
+  user: User;
 
   token: string;
 
@@ -41,17 +27,41 @@ export class EditComponent implements OnInit {
     ) 
     { }
 
+    async getUserStorage(){
+
+      let user;
+
+      if (this.platform.is("desktop")) {
+
+        user = await JSON.parse(localStorage.getItem('user'));
+        
+      } else {
+        user = await this.storage.getItem('user');
+      }
+
+      this.user = 
+        { 
+          id: user.id,
+          email: user.email,
+          user_password: user.user_password,
+          user_name: user.user_name,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          avatar: user.avatar,
+          birth_date: user.birth_date,
+          phone_number: user.phone_number,
+          street_name: user.street_name,
+          street_number: user.number,
+          batiment: user.edifice,
+          postal_code: user.postal_code,
+        }
+
+      return user;
+    }
+
   async ngOnInit() {
     
-   
-
-    if (this.platform.is("desktop")) {
-      this.userStorage = await JSON.parse(localStorage.getItem('user'));
-      this.token = await localStorage.getItem("token")
-      
-    } else {
-      this.userStorage = await this.storage.getItem('user');
-    }
+   this.getUserStorage()
     
   }
 
@@ -62,7 +72,7 @@ export class EditComponent implements OnInit {
   }
 
   editProfile(){
-    this.userEdit.edit(this.userStorage.id, this.user).then(async(user: any) => {
+    this.userEdit.edit(this.user.id, this.user).then(async(user: any) => {
       console.log(user)
       if (this.platform.is("desktop")) {
         await localStorage.removeItem('user')

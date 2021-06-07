@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './../../interfaces/user';
-
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Platform } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +12,11 @@ export class UserService {
   user: any;
   token: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private storage: NativeStorage,
+    private platform: Platform
+  ) { }
 
   getUserByRole(id: number) {
 
@@ -44,7 +49,12 @@ export class UserService {
   edit(id: number, user: User) {
     return new Promise(async(resolve, rejects) => {
 
-      this.token = await localStorage.getItem("token")
+      if (this.platform.is("desktop")) {
+        this.token = await localStorage.getItem("token")
+      } else {
+        this.token = await this.storage.getItem("token")
+      }
+      
       
       this.http.put(this.url + "/user/"+ id, user, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
           //(!data.success) ? rejects(data.message): resolve(data);

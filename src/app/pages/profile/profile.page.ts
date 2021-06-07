@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { User } from './../../interfaces/user';
 import { EditComponent } from '../../modals/edit/edit.component';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-profile',
@@ -10,12 +12,25 @@ import { EditComponent } from '../../modals/edit/edit.component';
 })
 export class ProfilePage implements OnInit {
 
-  constructor(private modal: ModalController) { }
+  userName: any;
 
-  userName: string;
+  constructor(
+    private modal: ModalController,
+    private camera: Camera,
+    private storage: NativeStorage,
+    private platform: Platform
+    ) { }
 
-  ngOnInit() {
-    this.userName = JSON.parse(localStorage.getItem('user')).user_name;
+  
+
+  async ngOnInit() {
+    if (this.platform.is("desktop")) {
+      this.userName = JSON.parse(await localStorage.getItem('user')).user_name;
+    
+    } else {
+      this.userName = JSON.parse(await this.storage.getItem('user')).user_name;
+    }
+    
     
   }
 
@@ -26,7 +41,23 @@ export class ProfilePage implements OnInit {
     return await modal.present();
   }
 
+  async uploadPicture(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+     }, (err) => {
+      // Handle error
+     });
 
+  }
   
 
 }

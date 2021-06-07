@@ -40,7 +40,13 @@ export class LoginPage implements OnInit {
 
   async ionViewWillEnter(){
       
+    if (this.platform.is("desktop")) {
       this.token = await localStorage.getItem("token")
+      
+    } else {
+      this.token = await this.storage.getItem("token")
+    }
+     
       console.log(this.token)
       if(this.token !== null){
         this.router.navigate(['/home'])
@@ -75,7 +81,7 @@ export class LoginPage implements OnInit {
         await localStorage.setItem('token', this.tokenjwt)
       } else {
         await this.storage.setItem('user', JSON.stringify(this.userAppli))
-        await this.storage.setItem('token', JSON.stringify(this.tokenjwt))
+        await this.storage.setItem('token', this.tokenjwt)
 
       }
 
