@@ -3,6 +3,7 @@ import { ModalController, Platform } from '@ionic/angular';
 import { User } from './../../interfaces/user';
 import { EditComponent } from '../../modals/edit/edit.component';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,8 @@ export class ProfilePage implements OnInit {
   constructor(
     private modal: ModalController,
     private storage: NativeStorage,
-    private platform: Platform
+    private platform: Platform,
+    private router: Router
     ) { }
 
   
@@ -40,6 +42,18 @@ export class ProfilePage implements OnInit {
   }
 
   
-  
+  async logout(){
+
+    if (this.platform.is("desktop")) {
+        await localStorage.removeItem('user');
+        await localStorage.removeItem('token');
+    } else {
+        await this.storage.remove('user')
+        await this.storage.remove('token')
+    }
+
+
+    this.router.navigate(['/login'])
+  }
 
 }

@@ -8,29 +8,21 @@ ion-content{
     .logo {
         z-index: 100000;
         position: relative;
-        top: -3rem;
+        top: -6rem;
         ion-col {
             text-align: center;
-            
-            input {
+            img {
+                width: 180px;
+                height: 180px;
                 padding: 15% 18%;
                 border-radius: 50%;
-            }
-            ion-icon {
-                color: white;
-                margin-top: 30%;
-                margin-left: -25%;
-                position: absolute;
-                border-radius: 50%;
-                font-size: xxx-large;
-                background: #f15152;
             }
         }
 
         .user_name{
-            margin-top: 1.5rem;
             font-size: 1.5rem;
             font-weight: 550;
+            margin-top: -2rem;
         }
     }
 
@@ -38,6 +30,7 @@ ion-content{
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+        margin-top: -5rem;
         .item-profile{
             background: linear-gradient(
                 320deg
@@ -65,5 +58,18 @@ ion-content{
     }
     .bottom{
         margin-top: 1rem;
+    }
+    .logout{
+        text-align: center;
+        margin-top: 1rem;
+        ion-col{
+            
+            ion-button{
+                --background: crimson
+            }
+            ion-icon{
+                margin-right: 10px;
+            }
+        }
     }
 }
