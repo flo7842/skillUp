@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 
 import { UserService } from '../../service/user/user.service';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { User } from '../../interfaces/user';
 import { CourseService } from '../../service/course/course.service';
 import { CommandService } from '../../service/command/command.service';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -23,12 +24,21 @@ export class HomePage implements OnInit{
   isAdmin: boolean = false;
   userId: number;
 
+  cartItemCount: BehaviorSubject<number>;
+
+  sliderConfig = {
+    spaceBetween: 0,
+    centeredSlides: true,
+    slidesPerView: 1.6
+  }
+
   constructor(
     private userService: UserService,
     private courseService: CourseService,
     private commandLineService: CommandService,
     private storage: NativeStorage,
-    private platform: Platform
+    private platform: Platform,
+    private modalCtrl: ModalController
     ) {}
 
   async ngOnInit(){
@@ -50,5 +60,15 @@ export class HomePage implements OnInit{
     }
     
   }
+
+
+
+  // async openCart(){
+  //   const modal = await this.modalCtrl.create({
+  //     component: CartPage,
+  //     cssClass: 'cart-modal'
+  //   })
+  //   modal.present();
+  // }
 
 }
