@@ -1,0 +1,62 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>Votre Panier</ion-title>
+	</ion-toolbar>
+  </ion-header>
+<ion-content fullscreen>
+	<div class="ion-text-end">
+		<ion-button (click)="close()" fill="clear" color="white">
+			<ion-icon name="close" slot="start"></ion-icon>
+		</ion-button>
+	</div>
+
+	<div class="ion-padding">
+		<ion-list>
+			<ion-item *ngFor="let product of contenu" class="ion-text-wrap">
+				<ion-grid>
+					<ion-row class="ion-align-items-center">
+						<ion-col size="4">
+							<img [src]="product.image"/>
+						</ion-col>
+						
+						<ion-col size="8" class="col-close">
+							<ion-button
+								color="medium"
+								fill="clear"
+								(click)="removeCartItem(product)"
+							>
+								<ion-icon name="close-circle" slot="icon-only"></ion-icon>
+							</ion-button>
+						</ion-col>
+					</ion-row>
+					<ion-row class="title">
+						<ion-col size="8">
+							<b>{{ product.contenu }}</b>
+						</ion-col>
+						<ion-col size="4" class="ion-text-end">
+							{{ product.amount * product.prix }}€
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-item>
+			<ion-item>
+				<ion-grid>
+					<ion-row class="row-total">
+						<ion-col size="8"> Total: </ion-col>
+
+						
+
+
+						<ion-col size="4" class="ion-text-end" *ngIf="contenu.length > 0 else elseBlock">
+							{{ getTotal() }} €
+						</ion-col>
+						<ng-template #elseBlock>0 €</ng-template>
+					</ion-row>
+				</ion-grid>
+			</ion-item>
+		</ion-list>
+
+		
+		<ion-button expand="full" (click)="checkout()" [disabled]="contenu.length == 0">PAYER</ion-button>
+	</div>
+</ion-content>

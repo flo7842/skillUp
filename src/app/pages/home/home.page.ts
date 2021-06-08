@@ -7,6 +7,7 @@ import { User } from '../../interfaces/user';
 import { CourseService } from '../../service/course/course.service';
 import { CommandService } from '../../service/command/command.service';
 import { BehaviorSubject } from 'rxjs';
+import { CartPage } from '../cart/cart.page';
 
 
 @Component({
@@ -63,12 +64,12 @@ export class HomePage implements OnInit{
 
 
 
-  // async openCart(){
-  //   const modal = await this.modalCtrl.create({
-  //     component: CartPage,
-  //     cssClass: 'cart-modal'
-  //   })
-  //   modal.present();
-  // }
+  async openCart(){
+    const modal = await this.modalCtrl.create({
+      component: CartPage,
+      cssClass: 'cart-modal'
+    })
+    modal.present();
+  }
 
 }
