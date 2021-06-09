@@ -29,7 +29,11 @@ const routes: Routes = [{
   {
     path: 'cart',
     loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
+  },  {
+    path: 'paypal',
+    loadChildren: () => import('./pages/paypal/paypal.module').then( m => m.PaypalPageModule)
   }
+
 
 ];
 
