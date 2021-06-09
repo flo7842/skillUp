@@ -5,6 +5,7 @@ import { PayPal, PayPalConfiguration, PayPalPayment } from '@ionic-native/paypal
 import { ModalController, Platform } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { CartService } from 'src/app/service/cart/cart.service';
+
 import { CartPage } from '../cart/cart.page';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { ModalController, Platform } from '@ionic/angular';
 import { Course } from 'src/app/interfaces/course';
@@ -71,8 +71,18 @@ export class CartPage implements OnInit {
   }
 
   async checkout() {
+    
+    // Ajoute le contenu du panier en base de données
+    //await this.addCartToBdd();
+
     this.close();
-   
-    //this.router.navigate(['../stripe'])
+    
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        special: this.getTotal()
+      }
+    };
+
+    this.router.navigate(['/paypal'], navigationExtras);
   }
 }
