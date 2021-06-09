@@ -13,11 +13,15 @@ import { ​​HttpClientModule​​ } from '@angular/common/http';
 import { ForgotPasswordComponent } from './modals/forgot-password/forgot-password.component';
 import { EditComponent } from './modals/edit/edit.component';
 import { FormsModule } from '@angular/forms';
+import { CartPage } from './pages/cart/cart.page';
+
+
+
 @NgModule({
   declarations: [AppComponent, ForgotPasswordComponent, EditComponent],
   entryComponents: [ForgotPasswordComponent, EditComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ​​HttpClientModule​​, FormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NativeStorage],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NativeStorage, CartPage],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

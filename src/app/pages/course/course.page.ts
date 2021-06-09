@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from '../../interfaces/course';
 import { CourseService } from '../../service/course/course.service';
 import { CartService } from '../../service/cart/cart.service';
-import { Platform } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { CartPage } from '../cart/cart.page';
 
 @Component({
   selector: 'app-course',
@@ -19,7 +20,8 @@ export class CoursePage implements OnInit {
     private course: CourseService, 
     private cartService: CartService,
     private platform: Platform,
-    private storage: NativeStorage
+    private storage: NativeStorage,
+    private modalCtrl: ModalController
     ) { }
 
   async ngOnInit() {
@@ -27,6 +29,13 @@ export class CoursePage implements OnInit {
     console.log(this.courses)
   }
 
+  async openCart(){
+    const modal = await this.modalCtrl.create({
+      component: CartPage,
+      cssClass: 'cart-modal'
+    })
+    modal.present();
+  }
 
   async addToLocalStorage(product){
     if(product){

@@ -5,9 +5,8 @@ export interface Course {
     description: string;
     image: string;
     rate: number;
-    price: string;
-    tax: number;
+    price: number;
     datePublish: string;
-    amount?: number;
+    amount?: any;
 }
 

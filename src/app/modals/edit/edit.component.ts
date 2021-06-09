@@ -15,7 +15,7 @@ export class EditComponent implements OnInit {
   userStorage: any;
 
   user: User;
-
+  avatar: string;
   token: string;
 
   constructor(
@@ -38,7 +38,7 @@ export class EditComponent implements OnInit {
       } else {
         user = await this.storage.getItem('user');
       }
-
+      
       this.user = 
         { 
           id: user.id,

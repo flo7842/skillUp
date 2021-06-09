@@ -1,21 +1,138 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-row class="top-row" size="12">
+      <ion-title>Accueil</ion-title>
+      <a (click)="openCart()" #cart>
+        <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
+      </a>
+      <div class="cart-length">
+        {{ cartItemCount | async }}
+      </div>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <div *ngIf="this.userRole; else elseBlock">Contenu Admin</div>
-  <ng-template #elseBlock>Contenu Utilisateur</ng-template>
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  
+
+
+
+    <ion-row>
+      <ion-card class="card-home-top">
+        <ion-card-header>
+          <ion-card-title>Réalisez vos rêves !</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Reconversion professionnels, Améliorer ces skills.
+          Avec SkillUp vos objectifs seront atteints !
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+      <ion-row class="row-star">
+        <h2 class="btn-star" color="black">
+          Les mieux notées
+        </h2>
+        <ion-slides [options]="sliderConfig">
+          <ion-slide class="slide1" *ngFor="let cour of bestCourses">
+            <ion-card class="card-home">
+              
+              
+            <ion-card-header class="card-body">
+              <img [src]="cour.image"/>
+            </ion-card-header>
+            <ion-card-content>
+              <div>
+                <cite>{{ cour.title }}</cite>
+                <h3>{{ cour.description.substring(0, 25) }} ...</h3>
+              </div>
+
+              <ion-row class="auteur">
+                <cite>{{ cour.author }}</cite>
+              </ion-row>
+              <ion-row class="card-footer">
+                <ion-col size="6">
+                  <ion-icon name="star-sharp" *ngIf="cour.rate > 1 else elseBlock"></ion-icon>
+                    <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
+                    <ion-icon name="star-sharp" *ngIf="cour.rate > 2 else elseBlock"></ion-icon>
+                    <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
+                    <ion-icon name="star-sharp" *ngIf="cour.rate > 3 else elseBlock"></ion-icon>
+                    <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
+                    <ion-icon name="star-sharp" *ngIf="cour.rate > 4 else elseBlock"></ion-icon>
+                    <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
+                    <ion-icon name="star-sharp" *ngIf="cour.rate > 5 else elseBlock"></ion-icon>
+                    <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
+                </ion-col>
+                <ion-col size="6">
+                  <span>{{ cour.price }},00€</span>
+                </ion-col>
+                
+              </ion-row>
+              <ion-row class="review">
+                <span>Les avis(12)</span>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+          
+          </ion-slide>
+
+
+          <ion-slide class="slide1">
+          
+          </ion-slide>
+          
+        </ion-slides>
+      </ion-row>
+    <ion-row>
+          <ion-row no-padding class="category-banner">
+            <h2>
+              Publié récemment
+
+            </h2>
+          </ion-row>
+          <ion-slides [options]="sliderConfig">
+            <ion-slide class="slide1" *ngFor="let courPromo of recentCourses">
+              <ion-card class="card-home">
+              <ion-card-header class="card-body">
+                <img [src]="courPromo.image"/>
+              </ion-card-header>
+              <ion-card-content>
+                <div>
+                  <h3>{{ courPromo.description.substring(0, 25) }} ...</h3>
+                </div>
+                  <ion-row class="auteur">
+                    <cite>{{ courPromo.title }}</cite>
+                    <cite>{{ courPromo.author }}</cite>
+                  </ion-row>
+                  <ion-row class="card-footer">
+                    <!-- <rating [rating]="review.rating"></rating> -->
+                    <ion-col size="6">
+                      
+                      <ion-icon name="star-sharp" *ngIf="courPromo.rate > 1 else elseBlock"></ion-icon>
+                      <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
+                      <ion-icon name="star-sharp" *ngIf="courPromo.rate > 2 else elseBlock"></ion-icon>
+                      <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
+                      <ion-icon name="star-sharp" *ngIf="courPromo.rate > 3 else elseBlock"></ion-icon>
+                      <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
+                      <ion-icon name="star-sharp" *ngIf="courPromo.rate > 4 else elseBlock"></ion-icon>
+                      <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
+                      <ion-icon name="star-sharp" *ngIf="courPromo.rate > 5 else elseBlock"></ion-icon>
+                      <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
+                    </ion-col>
+                    <ion-col size="6">
+                      <span>{{ courPromo.price }},00€</span>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="review">
+                  <span>Les avis(12)</span>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide class="slide1">
+            <h3 routerLink="course">Afficher tout</h3>
+          </ion-slide>
+        </ion-slides>
+    </ion-row>
+    
 </ion-content>

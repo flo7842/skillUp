@@ -5,7 +5,7 @@
   </div>
   <ion-row class="logo">
     <ion-col size="12" class="ion-align-self-center">
-        <img src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'">
+        <img [src]="avatar">
     </ion-col>
     <ion-col size="12" class="user_name">
       <span>{{userName}}</span>
@@ -14,11 +14,11 @@
   <ion-row class="row-item">
     <ion-col size="4" class="item-profile">
       <ion-icon name="book-outline"></ion-icon>
-        <span><a routerLink="/tabs/tuto">Tutos</a></span>
+       
     </ion-col>
     <ion-col size="4" class="item-profile">
       <ion-icon name="card-outline"></ion-icon>
-      <span><a routerLink="/tabs/paiement">Paiements</a></span>
+      
     </ion-col>
   </ion-row>
   <ion-row class="row-item bottom">
