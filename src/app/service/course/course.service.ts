@@ -44,7 +44,6 @@ export class CourseService {
               image: item.image,
               rate: item.rate,
               price: item.price,
-              tax: item.tax,
               datePublish: item.datePublish,
             })
             
@@ -54,6 +53,46 @@ export class CourseService {
          
           rejects(false)
         }
+      })
+    })
+  }
+
+  async getBestCourse(){
+    if (this.platform.is("desktop")) {
+      this.token = await localStorage.getItem("token")
+    } else {
+      this.token = await this.storage.getItem("token")
+    }
+    
+    
+    return new Promise((resolve, rejects) => {
+      this.http.get(this.url + "/best-courses", { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+            if(!data){
+              rejects(data)
+            }else{
+              console.log(data)
+              resolve(data.data);
+            }
+      })
+    })
+  }
+
+  async getRecentCourse(){
+    if (this.platform.is("desktop")) {
+      this.token = await localStorage.getItem("token")
+    } else {
+      this.token = await this.storage.getItem("token")
+    }
+    
+    
+    return new Promise((resolve, rejects) => {
+      this.http.get(this.url + "/recent-courses", { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+            if(!data){
+              rejects(data)
+            }else{
+              console.log(data)
+              resolve(data.data);
+            }
       })
     })
   }

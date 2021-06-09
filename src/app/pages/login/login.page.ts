@@ -94,7 +94,7 @@ export class LoginPage implements OnInit {
 
       
 
-      this.router.navigate(['/home'])
+      this.router.navigate(['home'])
     }).catch(async(err) => {
       
         console.log(err)

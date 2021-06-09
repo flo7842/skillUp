@@ -13,7 +13,8 @@ import { Router } from '@angular/router';
 export class ProfilePage implements OnInit {
 
   userName: any;
-
+  user: any;
+  avatar: string;
   constructor(
     private modal: ModalController,
     private storage: NativeStorage,
@@ -25,13 +26,16 @@ export class ProfilePage implements OnInit {
 
   async ngOnInit() {
     if (this.platform.is("desktop")) {
-      this.userName = JSON.parse(await localStorage.getItem('user')).user_name;
-    
+      this.user = JSON.parse(await localStorage.getItem('user'));
+      
+      
     } else {
-      this.userName = JSON.parse(await this.storage.getItem('user')).user_name;
+      this.user = JSON.parse(await this.storage.getItem('user'));
+      
     }
-    
-    
+    this.userName = this.user.user_name
+    this.avatar = this.user.avatar
+  
   }
 
   async edit() {

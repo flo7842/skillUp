@@ -9,10 +9,10 @@
 			<ion-icon name="close" slot="start"></ion-icon>
 		</ion-button>
 	</div>
-
-	<div class="ion-padding">
+	
+	<div class="ion-padding" *ngIf="cart.length !== 0; else elseBlock">
 		<ion-list>
-			<ion-item *ngFor="let product of contenu" class="ion-text-wrap">
+			<ion-item *ngFor="let product of cart" class="ion-text-wrap">
 				<ion-grid>
 					<ion-row class="ion-align-items-center">
 						<ion-col size="4">
@@ -31,10 +31,10 @@
 					</ion-row>
 					<ion-row class="title">
 						<ion-col size="8">
-							<b>{{ product.contenu }}</b>
+							<b>{{ product.description }}</b>
 						</ion-col>
 						<ion-col size="4" class="ion-text-end">
-							{{ product.amount * product.prix }}€
+							{{ product.amount * product.price }}€
 						</ion-col>
 					</ion-row>
 				</ion-grid>
@@ -47,7 +47,7 @@
 						
 
 
-						<ion-col size="4" class="ion-text-end" *ngIf="contenu.length > 0 else elseBlock">
+						<ion-col size="4" class="ion-text-end" *ngIf="content.length > 0 else elseBlock">
 							{{ getTotal() }} €
 						</ion-col>
 						<ng-template #elseBlock>0 €</ng-template>
@@ -57,6 +57,9 @@
 		</ion-list>
 
 		
-		<ion-button expand="full" (click)="checkout()" [disabled]="contenu.length == 0">PAYER</ion-button>
 	</div>
+	<ng-template #elseBlock>
+		<h3>Votre panier est vide</h3>
+	</ng-template>
+	<ion-button expand="full" (click)="checkout()" [disabled]="content.length == 0">PAYER</ion-button>
 </ion-content>

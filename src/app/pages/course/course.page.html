@@ -1,6 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>course</ion-title>
+    <ion-row class="top-row" size="12">
+      <ion-title>Catalogue</ion-title>
+      <a (click)="openCart()" #cart>
+        <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
+      </a>
+      <div class="cart-length">
+        {{ cartItemCount | async }}
+      </div>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
@@ -40,7 +48,6 @@
             </ion-col>
             <ion-col size="6">
               <span>{{ cour.price }},00€</span>
-              <span>{{ cour.tax }},00€</span>
               <span>{{ cour.datePublish }},00€</span>
             </ion-col>
           </ion-row>
