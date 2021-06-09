@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy, NavParams} from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,7 @@ import { ForgotPasswordComponent } from './modals/forgot-password/forgot-passwor
 import { EditComponent } from './modals/edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { CartPage } from './pages/cart/cart.page';
+import { PayPal } from '@ionic-native/paypal/ngx';
 
 
 
@@ -21,7 +22,7 @@ import { CartPage } from './pages/cart/cart.page';
   declarations: [AppComponent, ForgotPasswordComponent, EditComponent],
   entryComponents: [ForgotPasswordComponent, EditComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ​​HttpClientModule​​, FormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NativeStorage, CartPage],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NativeStorage, CartPage, PayPal, NavParams],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
