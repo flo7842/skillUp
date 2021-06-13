@@ -119,9 +119,9 @@ export class CartService {
 		this.cart.push(product); this.cartItemCount.next(this.cartItemCount.value + 1);
 		
 		if(this.platform.is("desktop")) {
-			localStorage.setItem('cartItem',JSON.stringify(this.getCart()))
+			localStorage.setItem('cart',JSON.stringify(this.getCart()))
 		}else{
-			this.storage.setItem('cartItem', JSON.stringify(this.getCart()))
+			this.storage.setItem('cart', JSON.stringify(this.getCart()))
 		}
 
 			
@@ -186,11 +186,16 @@ export class CartService {
 
 	
 
-	createCommand(UserId: number){
+	async createCommand(UserId: number){
+		if (this.platform.is("desktop")) {
+			this.token = await localStorage.getItem("token")
+		  } else {
+			this.token = await this.storage.getItem("token")
+		  }
 		return new Promise((resolve, rejects) => {
-				this.http.post(this.url + '/command', { UserId: UserId }).subscribe((data: any) => {
+				this.http.post(this.url + '/command', { UserId: UserId }, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
 					//(!data.success) ? rejects(false): resolve(data);
-					console.log(data)
+					
 					if(!data){
 					rejects(false)
 					}else{
@@ -204,7 +209,7 @@ export class CartService {
 
 	addCart(quantity: number, CommandId: number, CourseId: number){
 		return new Promise((resolve, rejects) => {
-			this.http.post(this.url + '/commandline', {  quantity: quantity, CommandId: CommandId, CourseId: CourseId, }).subscribe((data: any) => {
+			this.http.post(this.url + '/commandline', {  quantity: quantity, CommandId: CommandId, CourseId: CourseId }).subscribe((data: any) => {
 				//(!data.success) ? rejects(false): resolve(data);
 				console.log(data)
 				if(!data){

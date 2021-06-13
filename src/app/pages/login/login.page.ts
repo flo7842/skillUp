@@ -97,13 +97,15 @@ export class LoginPage implements OnInit {
       this.router.navigate(['home'])
     }).catch(async(err) => {
       
-        console.log(err)
-        const toast = await this.toast.create({
-          message: "Vous avez mal renseigné le champ email ou password !",
-          color: "danger",
-          duration: 1000,
-        });
-        toast.present();
+          
+          const toast = await this.toast.create({
+            message: "Vous avez mal renseigné le champ email ou password !",
+            color: "danger",
+            duration: 1000,
+          });
+          console.log("toto")
+          toast.present();
+        
         
     })
 }

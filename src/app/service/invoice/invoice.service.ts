@@ -18,7 +18,7 @@ export class InvoiceService {
     private platform: Platform
   ) { }
 
-  createInvoice(invoice: Invoice) {
+  createInvoice(payment_method: string, CompanyId: number, CommandId: number) {
 
     
     return new Promise(async (resolve, rejects) => {
@@ -30,9 +30,9 @@ export class InvoiceService {
       }
       
 
-      this.http.post(this.url + '/invoice', invoice).subscribe((data: any) => {
+      this.http.post(this.url + '/invoice', {payment_method: payment_method, CompanyId: CompanyId, CommandId: CommandId }, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
 
-            (!data) ? rejects(data.message): resolve(data);
+            (!data) ? rejects(data): resolve(data);
         });
     });
   }

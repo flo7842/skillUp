@@ -50,50 +50,7 @@ export class CoursePage implements OnInit {
       
     }
   }
-  async addCartToBdd(){
-    let user;
-    let cartStorage;
-
-    if (this.platform.is("desktop")) {
-      user = await JSON.stringify(this.cartService.getCart())
-      
-    } else {
-      user = this.storage.setItem('cart', JSON.stringify(this.cartService.getCart()))
-    }
-    
-    if (this.platform.is("desktop")) {
-      cartStorage = await JSON.parse(localStorage.getItem('cart'));
-      
-    } else {
-      cartStorage = this.storage.setItem('cart', JSON.stringify(this.cartService.getCart()))
-    }
-    
-
   
-    this.cartService.createCommand(user.id).then(async(command: any) => {
-        this.idCommand = command.message.split(/(\d+)/) 
-       
-        for(let cart of cartStorage){
-         
-          this.cartService.addCart(1, command.data.id, cart.id).then(async(user: any) => {
-             
-         //   //console.log(user)
-           
-          }).catch(async(err) => {
-           
-            console.log(err)
-             
-          })
-   
-       }
-    }).catch(async(err) => {
-      
-      console.log(err)
-        
-    })
-    
-
-  }
 
 
 }

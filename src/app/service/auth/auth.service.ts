@@ -16,31 +16,28 @@ export class AuthService {
 
   return new Promise((resolve, rejects) => {
     this.http.post(this.url + '/login', { email: email, user_password: user_password }).subscribe((data: any) => {
-   
-      if(!data){
-        rejects(false)
-      }else{
-        resolve(data);
-      }    
+        if(!data){
+          console.log(data)
+          rejects(false)
+        }else{
+          resolve(data);
+        }    
+      });
     });
-  });
-}
+  }
 
   register(user: User) {
       
     return new Promise((resolve, rejects) => {
         this.http.post(this.url + '/register', user).subscribe((data: any) => {
-            //(!data.success) ? rejects(data.message): resolve(data);
-            if(!data){
-          rejects(data)
-        }else{
-          console.log(data)
-          resolve(data);
-        }
+          if(!data){
+            rejects(data)
+          }else{
+            resolve(data);
+          }
         });
     });
   }
-
 
   resetPassword(email: string){
     return new Promise((resolve, rejects) => {
@@ -51,8 +48,6 @@ export class AuthService {
           console.log(data)
           resolve(data);
         }
-       //(!data) ? rejects(data): resolve(data);
-
       })
     })
   }
