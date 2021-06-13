@@ -11,16 +11,36 @@
       <span>{{userName}}</span>
     </ion-col>
   </ion-row>
+  <ion-row size="12">
+    <h2>Mes informations</h2>
+  </ion-row>
   <ion-row class="row-item">
-    <ion-col size="4" class="item-profile">
-      <ion-icon name="book-outline"></ion-icon>
-       
-    </ion-col>
-    <ion-col size="4" class="item-profile">
-      <ion-icon name="card-outline"></ion-icon>
-      
+      <ion-col size="12" class="item-profile" (click)="edit()">
+        <ion-item>
+          <ion-icon name="person-outline"></ion-icon>
+          <p>Mes coordonnées & mot de passe</p>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="card-outline"></ion-icon>
+          <p>Mes paiements</p>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="school-outline"></ion-icon>
+          <p>Mes Tutos</p>
+        </ion-item>
     </ion-col>
   </ion-row>
+  <ion-row size="12">
+    <h2>Contact</h2>
+  </ion-row>
+  <ion-row class="row-item">
+    <ion-col size="12">
+      <ion-item>
+        <ion-icon name="send-outline"></ion-icon>
+        <p>Nous contacter</p>
+      </ion-item>
+  </ion-col>
+</ion-row>
   <ion-row class="row-item bottom">
     <ion-col size="4" class="item-profile">
       <ion-icon name="help-outline"></ion-icon>
