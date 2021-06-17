@@ -31,6 +31,16 @@ const routes: Routes =
         ]
       },
       {
+        path: 'tuto',
+        children: [
+          {
+            path: '',
+            loadChildren: () => 
+              import('../../pages/tuto/tuto.module').then( m => m.TutoPageModule)
+          }
+        ]
+      },
+      {
         path: 'profile',
         children: [
           {

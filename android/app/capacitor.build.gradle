@@ -9,7 +9,7 @@ android {
 
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
-
+    implementation project(':capacitor-video-player')
 
 }
 apply from: "../../node_modules/card.io.cordova.mobilesdk/src/android/build.gradle"

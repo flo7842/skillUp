@@ -32,6 +32,10 @@ const routes: Routes = [{
   },  {
     path: 'paypal',
     loadChildren: () => import('./pages/paypal/paypal.module').then( m => m.PaypalPageModule)
+  },
+  {
+    path: 'tuto',
+    loadChildren: () => import('./pages/tuto/tuto.module').then( m => m.TutoPageModule)
   }
 
 
