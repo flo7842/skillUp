@@ -41,10 +41,10 @@ export class LoginPage implements OnInit {
   async ionViewWillEnter(){
       
     if (this.platform.is("desktop")) {
-      this.token = await localStorage.getItem("token")
+      this.token = await JSON.parse(localStorage.getItem("token"))
       
     } else {
-      this.token = await this.storage.getItem("token")
+      this.token = JSON.parse(await this.storage.getItem("token"))
     }
      
       console.log(this.token)
@@ -78,10 +78,10 @@ export class LoginPage implements OnInit {
       
       if (this.platform.is("desktop")) {
         await localStorage.setItem('user', JSON.stringify(this.userAppli))
-        await localStorage.setItem('token', this.tokenjwt)
+        await localStorage.setItem('token', JSON.stringify(this.tokenjwt))
       } else {
         await this.storage.setItem('user', JSON.stringify(this.userAppli))
-        await this.storage.setItem('token', this.tokenjwt)
+        await this.storage.setItem('token', JSON.stringify(this.tokenjwt))
 
       }
 

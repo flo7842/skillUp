@@ -7,12 +7,17 @@ import { User } from '../../interfaces/user';
 export class AuthService {
 
   ​​
-  url: string = "http://localhost:3000/api";
+  url: string = "https://flodevfullstack.com/api";
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * 
+   * @param email 
+   * @param user_password 
+   * @returns 
+   */
   login(email: string, user_password: string) {
-
 
   return new Promise((resolve, rejects) => {
     this.http.post(this.url + '/login', { email: email, user_password: user_password }).subscribe((data: any) => {
@@ -26,6 +31,11 @@ export class AuthService {
     });
   }
 
+  /**
+   * 
+   * @param user 
+   * @returns 
+   */
   register(user: User) {
       
     return new Promise((resolve, rejects) => {
@@ -39,6 +49,11 @@ export class AuthService {
     });
   }
 
+  /**
+   * This method will send an email for update password of user who has it forgot
+   * @param email 
+   * @returns 
+   */
   resetPassword(email: string){
     return new Promise((resolve, rejects) => {
       this.http.post(this.url + '/passwordreset',  { email: email }).subscribe((data: any) => {
@@ -52,7 +67,5 @@ export class AuthService {
     })
   }
 
-
-
-
+  
 }

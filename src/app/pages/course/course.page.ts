@@ -26,7 +26,6 @@ export class CoursePage implements OnInit {
 
   async ngOnInit() {
     this.courses = await this.course.getData();
-    console.log(this.courses)
   }
 
   async openCart(){

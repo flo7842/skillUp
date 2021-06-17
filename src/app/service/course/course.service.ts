@@ -9,7 +9,8 @@ import { Platform } from '@ionic/angular';
 })
 export class CourseService {
 
-  url: string = "http://localhost:3000/api";
+  url: string = "https://flodevfullstack.com/api";
+
   token: string;
   constructor(
     private http: HttpClient,
@@ -17,12 +18,17 @@ export class CourseService {
     private platform: Platform
   ) { }
 
+
+  /**
+   * 
+   * @returns 
+   */
   async getData(): Promise <Course[]>{
 
     if (this.platform.is("desktop")) {
-      this.token = await localStorage.getItem("token")
+      this.token = await JSON.parse(localStorage.getItem("token"))
     } else {
-      this.token = await this.storage.getItem("token")
+      this.token = JSON.parse(await this.storage.getItem("token"))
     }
     
     
@@ -57,11 +63,15 @@ export class CourseService {
     })
   }
 
+  /**
+   * Method for get all courses with best rate
+   * @returns 
+   */
   async getBestCourse(){
     if (this.platform.is("desktop")) {
-      this.token = await localStorage.getItem("token")
+      this.token = await JSON.parse(localStorage.getItem("token"))
     } else {
-      this.token = await this.storage.getItem("token")
+      this.token = JSON.parse(await this.storage.getItem("token"))
     }
     
     
@@ -77,11 +87,15 @@ export class CourseService {
     })
   }
 
+  /**
+   * Method for get recent course posted
+   * @returns 
+   */
   async getRecentCourse(){
     if (this.platform.is("desktop")) {
-      this.token = await localStorage.getItem("token")
+      this.token = await JSON.parse(localStorage.getItem("token"))
     } else {
-      this.token = await this.storage.getItem("token")
+      this.token = JSON.parse(await this.storage.getItem("token"))
     }
     
     

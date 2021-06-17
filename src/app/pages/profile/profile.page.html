@@ -11,7 +11,7 @@
       <span>{{userName}}</span>
     </ion-col>
   </ion-row>
-  <ion-row size="12">
+  <ion-row size="12" class="info">
     <h2>Mes informations</h2>
   </ion-row>
   <ion-row class="row-item">
@@ -41,16 +41,6 @@
       </ion-item>
   </ion-col>
 </ion-row>
-  <ion-row class="row-item bottom">
-    <ion-col size="4" class="item-profile">
-      <ion-icon name="help-outline"></ion-icon>
-      <span (click)="faq()">FAQ</span>
-    </ion-col>
-    <ion-col size="4" class="item-profile" (click)="edit()">
-      <ion-icon name="create-outline"></ion-icon>
-      <span>Éditer</span>
-    </ion-col>
-  </ion-row>
   <ion-row class="logout">
     <ion-col size="12" (click)="logout()" text-align>
       <ion-button expanded="full">

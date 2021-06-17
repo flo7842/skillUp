@@ -16,6 +16,9 @@
         <img [src]="user.avatar" alt="avatar de l'utilisateur" />
       </ion-col>
     </ion-row>
+    <ion-row>
+      <h2>Mes informations</h2>
+    </ion-row>
     <ion-row class="form">
       <ion-col size="12">
         <ion-item [ngClass]="isErrorMail ? 'errorField' : 'goodField'">
@@ -63,8 +66,31 @@
           <ion-button (click)="editProfile()" expand="full">Modifier</ion-button>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <h2>Modifier mon mot de passe</h2>
+    <ion-row class="update-pass">
+      <ion-col size="2" class="ico-pass">
+        <ion-icon *ngIf="hide; else elseBlock" name="lock-open-outline"></ion-icon>
+        <ng-template #elseBlock><ion-icon name="lock-closed-outline"></ion-icon></ng-template>
+      </ion-col>
+      <ion-col class="inp-pass" size="10">
+        <p (click)="ngIfCtrl()">Modifier mon mot de passe</p>
+      </ion-col>
+      <ion-row>
+        <ion-row>
+          <ion-col class="reset">
+            <ion-item *ngIf="hide">
+              <ion-label position="floating">Ancien mot de passe</ion-label>
+              <ion-input type="password" [(ngModel)]="oldPass"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="hide">
+              <ion-label position="floating">Nouveau mot de passe</ion-label>
+              <ion-input type="password" [(ngModel)]="newPass"></ion-input>
+            </ion-item>
+            <ion-col class="col-reset">
+              <ion-button *ngIf="hide" (click)="updatePass()" expand="full">Modifier mon mot de passe</ion-button>
+            </ion-col>
+          </ion-col>
+        </ion-row>
+      </ion-row>
     </ion-row>
-  </div>
+    </div>
 </ion-content>

@@ -53,9 +53,9 @@ export class HomePage implements OnInit{
     
     if (this.platform.is("desktop")) {
       
-      this.user = JSON.parse(localStorage.getItem('user'))
+      this.user = JSON.parse(await localStorage.getItem('user'))
     }else{
-      this.user = this.storage.getItem('user')
+      this.user = JSON.parse(await this.storage.getItem('user'))
     }
     this.userId = this.user.id
     

@@ -8,7 +8,8 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 })
 export class CommandService {
 
-  url: string = "http://localhost:3000/api";
+  url: string = "https://flodevfullstack.com/api";
+
   token: string;
 
   constructor(
@@ -23,9 +24,9 @@ export class CommandService {
     return new Promise(async (resolve, rejects) => {
 
       if (this.platform.is("desktop")) {
-        this.token = await localStorage.getItem("token")
+        this.token = await JSON.parse(localStorage.getItem("token"))
       } else {
-        this.token = await this.storage.getItem("token")
+        this.token = JSON.parse(await this.storage.getItem("token"))
       }
       
 
