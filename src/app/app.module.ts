@@ -15,12 +15,13 @@ import { EditComponent } from './modals/edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { CartPage } from './pages/cart/cart.page';
 import { PayPal } from '@ionic-native/paypal/ngx';
+import { UpdatePasswordComponent } from './modals/update-password/update-password.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, ForgotPasswordComponent, EditComponent],
-  entryComponents: [ForgotPasswordComponent, EditComponent],
+  declarations: [AppComponent, ForgotPasswordComponent, EditComponent, UpdatePasswordComponent],
+  entryComponents: [ForgotPasswordComponent, EditComponent, UpdatePasswordComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ​​HttpClientModule​​, FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NativeStorage, CartPage, PayPal, NavParams],
   bootstrap: [AppComponent],

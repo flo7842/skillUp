@@ -8,7 +8,8 @@ import { Platform } from '@ionic/angular';
 })
 export class UserService {
 
-  url: string = "http://localhost:3000/api";
+  url: string = "https://flodevfullstack.com/api";
+
   user: any;
   token: string;
 
@@ -18,6 +19,11 @@ export class UserService {
     private platform: Platform
   ) { }
 
+  /**
+   * Method for find user by role
+   * @param id 
+   * @returns 
+   */
   getUserByRole(id: number) {
 
     let tabRole = []
@@ -46,13 +52,19 @@ export class UserService {
     }
   }
 
+  /**
+   * Method for update user
+   * @param id 
+   * @param user 
+   * @returns 
+   */
   edit(id: number, user: User) {
     return new Promise(async(resolve, rejects) => {
 
       if (this.platform.is("desktop")) {
-        this.token = await localStorage.getItem("token")
+        this.token = await JSON.parse(localStorage.getItem("token"))
       } else {
-        this.token = await this.storage.getItem("token")
+        this.token = JSON.parse(await this.storage.getItem("token"))
       }
       
       
@@ -60,6 +72,35 @@ export class UserService {
           //(!data.success) ? rejects(data.message): resolve(data);
           if(!data){
         rejects(data)
+      }else{
+        console.log(data)
+        resolve(data);
+      }
+      });
+    });
+  }
+
+  /**
+   * Method for update user password
+   * @param id 
+   * @param oldpass 
+   * @param user_password 
+   * @returns 
+   */
+  async updatePassword(id: number, oldpass: string, user_password: string){
+    return new Promise(async(resolve, rejects) => {
+
+      if (this.platform.is("desktop")) {
+        this.token = await JSON.parse(localStorage.getItem("token"))
+      } else {
+        this.token = JSON.parse(await this.storage.getItem("token"))
+      }
+      
+      
+      this.http.put(this.url + "/reset-password-modify/"+ id, {oldpass: oldpass, user_password: user_password}, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+          //(!data.success) ? rejects(data.message): resolve(data);
+          if(!data){
+        rejects(false)
       }else{
         console.log(data)
         resolve(data);

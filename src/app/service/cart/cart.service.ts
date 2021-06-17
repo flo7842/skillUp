@@ -21,7 +21,7 @@ export class CartService {
 
 
 
-	url: string = "http://localhost:3000/api";
+	url: string = "https://flodevfullstack.com/api";
 	token: string;
 	private cart = [];
 	private cartItemCount = new BehaviorSubject(0);
@@ -39,12 +39,16 @@ export class CartService {
 		return this.course = await this.courseService.getData();
 	}
 
+	/**
+	 * 
+	 * @returns Course
+	 */
 	async getData(): Promise <Course[]>{
 
 		if (this.platform.is("desktop")) {
-			this.token = await localStorage.getItem("token")
+			this.token = await JSON.parse(localStorage.getItem("token"))
 		  } else {
-			this.token = await this.storage.getItem("token")
+			this.token = JSON.parse(await this.storage.getItem("token"))
 		  }
 
 		return new Promise((resolve, rejects) => {
@@ -111,6 +115,10 @@ export class CartService {
 
 	// }
 
+	/**
+	 * 
+	 * @param product 
+	 */
 	async addProduct(product: Course) {
 		
 		product.amount = 1
@@ -127,6 +135,11 @@ export class CartService {
 			
 	}
 
+
+	/**
+	 * 
+	 * @param product 
+	 */
 	decreaseProduct(product: Course) {
 		for (const [index, item] of this.cart.entries()) {
 			if (item.Id === product.id) {
@@ -141,15 +154,7 @@ export class CartService {
 		this.cartItemCount.next(this.cartItemCount.value - 1);
 	}
 
-	// removeProduct(product: Course) {
-	// 	for (const [index, item] of this.cart.entries()) {
-	// 		if (item.id === product.id) {
-	// 			this.cartItemCount.next(this.cartItemCount.value - item.amount);
-	// 			this.cart.splice(index, 1);
-	// 			item.amount = 1
-	// 		}
-	// 	}
-	// }
+	
 
 	async removeProduct(product: Course) {
 		if(this.platform.is("desktop")) {
@@ -188,9 +193,9 @@ export class CartService {
 
 	async createCommand(UserId: number){
 		if (this.platform.is("desktop")) {
-			this.token = await localStorage.getItem("token")
+			this.token = await JSON.parse(localStorage.getItem("token"))
 		  } else {
-			this.token = await this.storage.getItem("token")
+			this.token = JSON.parse(await this.storage.getItem("token"))
 		  }
 		return new Promise((resolve, rejects) => {
 				this.http.post(this.url + '/command', { UserId: UserId }, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
