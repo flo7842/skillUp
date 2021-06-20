@@ -1,0 +1,24 @@
+
+<ion-header>
+    <ion-toolbar>
+      <ion-row class="top-row" size="12">
+        <ion-title>Videos du cour</ion-title>
+      </ion-row>
+    </ion-toolbar>
+  </ion-header>
+<ion-content [fullscreen]="true">
+    <div id="screenPlayer" slot="fixed">
+    </div>
+    <h1>{{titleCourse}}</h1>
+    <ion-list>
+        <ion-item *ngFor="let video of videoCourse">
+            <ion-avatar slot="start">
+                <img [src]="video.image" />
+            </ion-avatar>
+            <ion-label>{{video.description}}</ion-label>
+            <ion-button slot="end" fill="clean" size="large" (click)="play(video.url)">
+                <ion-icon name="play-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ion-list>
+</ion-content>

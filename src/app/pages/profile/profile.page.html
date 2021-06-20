@@ -1,8 +1,9 @@
-
 <ion-content>
-  <div class="header">
-  
-  </div>
+  <ion-row class="top" size="12">
+    <div>
+      <img src="../../../assets/image/skillup-logo.png" alt="logo skillup">
+    </div>
+  </ion-row>
   <ion-row class="logo">
     <ion-col size="12" class="ion-align-self-center">
         <img [src]="avatar">
@@ -15,18 +16,18 @@
     <h2>Mes informations</h2>
   </ion-row>
   <ion-row class="row-item">
-      <ion-col size="12" class="item-profile" (click)="edit()">
-        <ion-item>
+      <ion-col size="12" class="item-profile">
+        <ion-item (click)="edit()">
           <ion-icon name="person-outline"></ion-icon>
-          <p>Mes coordonnées & mot de passe</p>
+          <span><p>Mes coordonnées & mot de passe</p></span>
         </ion-item>
         <ion-item>
           <ion-icon name="card-outline"></ion-icon>
-          <p>Mes paiements</p>
+          <span><a routerLink="/tuto">Mes paiements</a></span>
         </ion-item>
         <ion-item>
           <ion-icon name="school-outline"></ion-icon>
-          <p>Mes Tutos</p>
+          <span><a routerLink="/tuto">Mes Tutos</a></span>
         </ion-item>
     </ion-col>
   </ion-row>
@@ -37,7 +38,7 @@
     <ion-col size="12">
       <ion-item>
         <ion-icon name="send-outline"></ion-icon>
-        <p>Nous contacter</p>
+        <span><a routerLink="/tuto">Nous contacter</a></span>
       </ion-item>
   </ion-col>
 </ion-row>
@@ -45,8 +46,18 @@
     <ion-col size="12" (click)="logout()" text-align>
       <ion-button expanded="full">
         <ion-icon name="power-outline"></ion-icon>
-        Déconnexion
+        <p>Déconnexion</p>
       </ion-button>
     </ion-col>
   </ion-row>
+  <ion-footer class="ion-no-border">
+    <ion-row>
+      <img src="../../../assets/image/skillup-logo.png" alt="logo skillup">
+    </ion-row>
+    <ion-row class="copy-rights"> 
+      <cite class="cite-v">SkillUp v1.0.0</cite>
+      <cite>&#169; 2020-2021 SkillUp.com</cite>
+      <cite>All rights reserved</cite>
+    </ion-row>
+  </ion-footer>
 </ion-content>

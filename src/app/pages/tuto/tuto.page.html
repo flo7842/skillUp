@@ -15,20 +15,9 @@
         <img [src]="course.image" />
       </ion-avatar>
       <div>
-        <ion-title>{{course.title}}</ion-title>
+        <ion-title (click)="videoComponent(course.id, course.title)">{{course.title}}</ion-title>
         <ion-label>{{course.author}}</ion-label>
       </div>
     </ion-item>
   </ion-list>
-  <!-- <ion-list>
-    <ion-item *ngFor="let v of videoCourses">
-      <ion-avatar slot="start">
-        <img [src]="v.image" />
-      </ion-avatar>
-      <ion-label>{{v.description}}</ion-label>
-      <ion-button slot="end" fill="clean" size="large" (click)="play(v.url)">
-        <ion-icon name="play-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-list> -->
 </ion-content>

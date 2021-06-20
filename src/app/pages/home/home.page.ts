@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, Platform } from '@ionic/angular';
+import { LoadingController, ModalController, Platform } from '@ionic/angular';
 
 import { UserService } from '../../service/user/user.service';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
@@ -41,16 +41,17 @@ export class HomePage implements OnInit{
     private commandLineService: CommandService,
     private storage: NativeStorage,
     private platform: Platform,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    public loadingCtrl: LoadingController
     ) {}
 
   async ngOnInit(){
-
+    this.autoLoader();
    
     this.recentCourses = await this.courseService.getRecentCourse();
     this.bestCourses = await this.courseService.getBestCourse();
     this.commandLine = await this.commandLineService.getDataByCommand(1);
-    
+    console.log(this.recentCourses)
     if (this.platform.is("desktop")) {
       
       this.user = JSON.parse(await localStorage.getItem('user'))
@@ -63,10 +64,36 @@ export class HomePage implements OnInit{
     // if(this.userRole !== undefined && this.userRole.name == "admin"){
     //     this.isAdmin = true;
     // }
-
-    
     
   }
+
+  simpleLoader() {
+    this.loadingCtrl.create({
+        message: 'Loading...'
+    }).then((response) => {
+        response.present();
+    });
+  }
+
+  dismissLoader() {
+    this.loadingCtrl.dismiss().then((response) => {
+        console.log('Loader closed!', response);
+    }).catch((err) => {
+        console.log('Error occured : ', err);
+    });
+  }
+
+autoLoader() {
+  this.loadingCtrl.create({
+    message: 'Chargement...',
+    duration: 4000
+  }).then((response) => {
+    response.present();
+    response.onDidDismiss().then((response) => {
+      console.log('Loader dismissed', response);
+    });
+  });
+} 
 
 
 

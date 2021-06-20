@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { Platform } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { User } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/service/user/user.service';
 
@@ -8,6 +9,7 @@ import { Plugins } from '@capacitor/core';
 import * as PluginsLibrary from 'capacitor-video-player';
 const { CapacitorVideoPlayer, Device } = Plugins;
 import * as WebVPPlugin from 'capacitor-video-player';
+import { TutoDetailsComponent } from 'src/app/modals/tuto-details/tuto-details.component';
 
 const videoFrom:string = "http";
 
@@ -37,13 +39,17 @@ export class TutoPage implements AfterViewInit, OnInit {
 
     userCourse: any;
     videoCourses: any = []; 
-
+        video: any = [];
     videoPlayer: any;
-
+    toto: any;
+        id: number;
     constructor(
         private userService: UserService,
         private platform: Platform,
-        private storage: NativeStorage
+        private storage: NativeStorage,
+        private route: ActivatedRoute,
+        private router: Router,
+        private modal: ModalController
         ) { }
 
     async ngOnInit() {
@@ -56,20 +62,25 @@ export class TutoPage implements AfterViewInit, OnInit {
         }
 
         this.userCourse = await this.userService.getTutosUser(this.user.id)
-        
-        
-        console.log("toto")
-        for(let course of this.userCourse){
-            console.log(course)
-            this.videoCourses.push(await this.userService.getTutosVideosUser(course.id))
-        }
-        
-        console.log(this.videoCourses)
-        
-
+        this.toto = await this.userService.getTutosVideosUser(1)
         
     }
 
+
+    async videoComponent(id: number, title: string) {
+        this.videoCourses = await this.userService.getTutosVideosUser(id)
+        console.log(this.videoCourses.message)
+        //this.router.navigateByUrl('/dynamic', { state: { id:1 , name:'Angular' } });
+        const modal = await this.modal.create({
+            component: TutoDetailsComponent,
+            componentProps: {
+                'videoCourse': this.videoCourses,
+                'titleCourse': title,
+              }
+          });
+          //this.router.navigateByUrl("/tuto-component");
+          return await modal.present();
+    }
 
     async ngAfterViewInit() {
         const info = await Device.getInfo();
