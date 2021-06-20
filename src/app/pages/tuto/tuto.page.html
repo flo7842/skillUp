@@ -1,0 +1,23 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar>
+    <ion-title>
+      Mes tutos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="fullscreen" slot="fixed">
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let course of userCourse">
+      <ion-avatar slot="start">
+        <img [src]="course.image" />
+      </ion-avatar>
+      <div>
+        <ion-title (click)="videoComponent(course.id, course.title)">{{course.title}}</ion-title>
+        <ion-label>{{course.author}}</ion-label>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

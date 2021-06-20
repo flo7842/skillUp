@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { TutoDetailsComponent } from './modals/tuto-details/tuto-details.component';
 
 const routes: Routes = [{
 
@@ -29,12 +30,18 @@ const routes: Routes = [{
   {
     path: 'cart',
     loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
-  },  {
+  },
+  {
     path: 'paypal',
     loadChildren: () => import('./pages/paypal/paypal.module').then( m => m.PaypalPageModule)
+  },
+  {
+    path: 'tuto',
+    loadChildren: () => import('./pages/tuto/tuto.module').then( m => m.TutoPageModule)
+  },
+  {
+    path : 'tuto-component', component : TutoDetailsComponent
   }
-
-
 ];
 
 @NgModule({

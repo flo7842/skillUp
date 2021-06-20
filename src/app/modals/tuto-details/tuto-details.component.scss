@@ -1,0 +1,22 @@
+ion-header{
+    ion-toolbar{
+      color: white;
+      --background: #7353a2;
+    }
+      .top-row{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 2rem;
+        ion-button{
+            margin-left: 2rem;
+          --background: transparent;
+        }
+    }
+}
+ion-content{
+    h1{
+        margin-top: 5rem;
+        font-size: 1rem;
+        text-align: center;
+    }
+}

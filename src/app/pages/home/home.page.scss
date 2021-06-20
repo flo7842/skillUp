@@ -20,33 +20,59 @@ ion-header{
     }
 }
 ion-content{
-  --background: #f6efff;
-  .card-home{
-    background: transparent;
+  .card-home-top{
+    background-image: url('../../../assets/image/header-picture.jpg');
+    background-size: cover;
+    box-shadow: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    ion-card-content{
+      background: #ffffff;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      padding: 0.8rem;
+      align-content: center;
+      align-items: center;
+      align-items: center;
+      margin: 0;
+    }
+    p{
+      text-align: center;
+      font-size: 10px;
+    }
+  }
+  ion-card{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    background: #4F3970;
+    box-shadow: 7px 4px 6px 0px #7353a2d4;
     ion-card-header{
         padding-top: 0px !important;
         padding-bottom: 0px !important;
         padding-left: 0px !important;
         padding-right: 0px !important;
          img {
-          
-          max-width: 90%;
+          width: 90%;
+          object-fit: cover;
+          height: 116px;
           margin-top: 0.5rem;
           border-radius: 10px;
-          vertical-align: middle;
-        
         }
     }
     h3{
+        margin-top: 15px;
         margin-bottom: 2px!important;
         font-size: 15px;
         text-align: left;
-        color: black;
+        color: #D4C2F0;
         
     }
     span{
         font-size: 0.8rem;
-        color: #45A29E;
+        color: #D4C2F0;
     }
   
   
@@ -59,9 +85,12 @@ ion-content{
         padding-left: 0 !important;
         padding-right: 0!important;
         
-        div{
-            margin-top: 0.8rem;
-       
+        h2{
+          margin-top: 10px;
+          margin-left: 0;
+          font-weight: 600;
+          font-size: 1rem;
+          color: #D4C2F0;
         }
         .auteur{
             display: flex;
@@ -70,7 +99,7 @@ ion-content{
             cite{
               font-style: normal;
               font-size: 0.8rem;
-              margin-left: 0.2rem;
+             
               display: inline-block;
               margin: left;
               color: #C5C6C7;
@@ -94,7 +123,6 @@ ion-content{
         .card-footer{
           display: flex;
           align-items: center;
-          margin: 0 0.2rem 0 0.2rem;
             ion-col{
                 display: flex;
                 justify-content: center;
@@ -105,15 +133,14 @@ ion-content{
             }
             span{
                 font-size: 0.8rem;
-                color: #45A29E;
+                color: #C5C6C7;
             }
         }
         .review{
             display: flex;
             span{
                 font-size: 0.5rem;
-                color: #45A29E;
-            
+                color: #C5C6C7;
             }
         }
         
