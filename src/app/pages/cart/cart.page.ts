@@ -5,6 +5,7 @@ import { ModalController, Platform, ToastController } from '@ionic/angular';
 import { Course } from 'src/app/interfaces/course';
 import { User } from 'src/app/interfaces/user';
 import { CartService } from 'src/app/service/cart/cart.service';
+import { PaypalPage } from '../paypal/paypal.page';
 
 @Component({
   selector: 'app-cart',
@@ -12,13 +13,13 @@ import { CartService } from 'src/app/service/cart/cart.service';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
-
   cart: Course[] = [];
   course: Course[] = [];
   user: User;
   idCourse: number;
   content: Course[] = [];
   infoValidateUser: any[] = [];
+  vat: number = 20;
 
   constructor(
     private router: Router,
@@ -31,7 +32,7 @@ export class CartPage implements OnInit {
    
   async ngOnInit() {
     this.cart = this.cartService.getCart();
-
+    
     if (this.platform.is("desktop")) {
       this.course = await JSON.parse(localStorage.getItem('cart'));
       this.user = await JSON.parse(localStorage.getItem('user'));
@@ -39,6 +40,7 @@ export class CartPage implements OnInit {
       this.course = JSON.parse(await this.storage.getItem('cart'));
       this.user = JSON.parse(await this.storage.getItem('user'));
     }
+    
     
     
     if(this.course!== null){
@@ -57,8 +59,9 @@ export class CartPage implements OnInit {
     this.infoValidateUser.push(this.user.street_number)
     this.infoValidateUser.push(this.user.postal_code)
     this.infoValidateUser.push(this.user.phone_number)
-
+    
   }
+
 
   async decreaseCartItem(product){
     await this.cartService.decreaseProduct(product);
@@ -73,8 +76,14 @@ export class CartPage implements OnInit {
     await this.cartService.removeProduct(product);
   }
 
+  calcVat(price: number){
+      let calc = price * this.vat / 100;
+      let result = calc.toFixed()
+      return parseInt(result)
+  }
+
   getTotal(){
-    return this.cart.reduce((i, j) => i + j.price * j.amount, 0);
+    return this.cart.reduce((i, j) => i + j.price + this.calcVat(j.price) * j.amount, 0);
   }
 
   close(){
@@ -82,7 +91,7 @@ export class CartPage implements OnInit {
   }
 
   async checkout() {
-    console.log(this.infoValidateUser)
+
     for(let i = 0; i < this.infoValidateUser.length - 1; i++){
         if(this.infoValidateUser[i] == null || this.infoValidateUser[i] == ""){
           const toast = await this.toast.create({
@@ -95,22 +104,29 @@ export class CartPage implements OnInit {
           return
         }
     }
-      
-      this.close();
-  
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-          special: this.getTotal()
-        }
-      };
-  
-      this.router.navigate(['/paypal'], navigationExtras);
+    
+    this.openPaypal()
       
     
   }
 
 
+  async openPaypal(){
+    await this.close()
+    const modal = await this.modalCtrl.create({
+      component: PaypalPage,
+      cssClass: 'app-paypal',
+      componentProps: {
+        'total': this.getTotal(),
+      }
+    })
+    
+    modal.present();
+  }
 
+  closePaypal(){
+    this.modalCtrl.dismiss();
+  }
 
 
 }

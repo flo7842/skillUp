@@ -9,11 +9,13 @@ ion-header{
         margin-right: 2rem;
         ion-button{
             margin-left: 2rem;
-          --background: transparent;
+            --box-shadow: none;
+            --background: transparent;
         }
       }
   }
 ion-content{
+  --background: #f6efff;
     h2{
       font-size: 1.2rem;
       margin-left: 1rem;

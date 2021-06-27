@@ -2,6 +2,7 @@ import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Plugins } from '@capacitor/core';
+import { ModalController } from '@ionic/angular';
 import * as PluginsLibrary from 'capacitor-video-player';
 const { CapacitorVideoPlayer, Device } = Plugins;
 import * as WebVPPlugin from 'capacitor-video-player';
@@ -20,7 +21,8 @@ export class TutoDetailsComponent implements AfterViewInit, OnInit {
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private modal: ModalController
     ) {
     }
 
@@ -47,5 +49,12 @@ export class TutoDetailsComponent implements AfterViewInit, OnInit {
                                                             componentTag:"app-tuto-details"
                                                         });
     }
+
+
+    close() {
+        this.modal.dismiss({
+            'dismissed': true
+        });
+      }
 
 }

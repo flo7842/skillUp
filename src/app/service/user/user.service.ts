@@ -8,16 +8,27 @@ import { Platform } from '@ionic/angular';
 })
 export class UserService {
 
-    url: string = "https://flodevfullstack.com/api";
+    url: string = "http://localhost:3000/api";
 
     user: any;
+    userRole: any;
     token: string;
+    private firstName: string;
 
     constructor(
         private http: HttpClient,
         private storage: NativeStorage,
         private platform: Platform
     ) { }
+
+    async getUser(){
+        if (this.platform.is("desktop")) {
+            this.user = await JSON.parse(localStorage.getItem("user"))
+        } else {
+            this.user = JSON.parse(await this.storage.getItem("user"))
+        }
+        return this.user
+    }
 
     /**
      * Method for find user by role
@@ -33,8 +44,8 @@ export class UserService {
                 
                 rejects(false)
             }else{
-                this.user = data.data
-                tabRole.push(this.user.Roles);
+                this.userRole = data.data
+                tabRole.push(this.userRole.Roles);
                 let roles = search("admin",tabRole[0])
                 
                 
@@ -73,7 +84,6 @@ export class UserService {
             if(!data){
             rejects(data)
         }else{
-            console.log(data)
             resolve(data);
         }
         });
@@ -102,7 +112,6 @@ export class UserService {
                 if(!data){
                 rejects(false)
             }else{
-                console.log(data)
                 resolve(data);
             }
             });

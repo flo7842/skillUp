@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { ModalController, Platform } from '@ionic/angular';
@@ -18,7 +18,7 @@ const videoFrom:string = "http";
   templateUrl: './tuto.page.html',
   styleUrls: ['./tuto.page.scss'],
 })
-export class TutoPage implements AfterViewInit, OnInit {
+export class TutoPage implements OnInit {
 
     user: User = 
         { 
@@ -39,10 +39,10 @@ export class TutoPage implements AfterViewInit, OnInit {
 
     userCourse: any;
     videoCourses: any = []; 
-        video: any = [];
+    video: any = [];
     videoPlayer: any;
-    toto: any;
-        id: number;
+    
+    id: number;
     constructor(
         private userService: UserService,
         private platform: Platform,
@@ -62,14 +62,13 @@ export class TutoPage implements AfterViewInit, OnInit {
         }
 
         this.userCourse = await this.userService.getTutosUser(this.user.id)
-        this.toto = await this.userService.getTutosVideosUser(1)
         
     }
 
 
     async videoComponent(id: number, title: string) {
         this.videoCourses = await this.userService.getTutosVideosUser(id)
-        console.log(this.videoCourses.message)
+       
         //this.router.navigateByUrl('/dynamic', { state: { id:1 , name:'Angular' } });
         const modal = await this.modal.create({
             component: TutoDetailsComponent,
@@ -82,24 +81,6 @@ export class TutoPage implements AfterViewInit, OnInit {
           return await modal.present();
     }
 
-    async ngAfterViewInit() {
-        const info = await Device.getInfo();
-        if (info.platform === "ios" || info.platform === "android") {
-        this.videoPlayer = CapacitorVideoPlayer;
-        } else {
-        this.videoPlayer = PluginsLibrary.CapacitorVideoPlayer
-        }
-
-    }
-
-    // Permet de lancer la lecture vidéo
-    async play(url: string) {
-        
-        const res:any  = await this.videoPlayer.initPlayer({mode: "fullscreen",
-                                                            url: url, subtitle: "video tutorama",
-                                                            playerId: "fullscreen",
-                                                            componentTag:"app-tuto"
-                                                        });
-    }
+    
 
 }

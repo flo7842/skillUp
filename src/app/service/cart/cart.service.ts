@@ -21,7 +21,7 @@ export class CartService {
 
 
 
-	url: string = "https://flodevfullstack.com/api";
+	url: string = "http://localhost:3000/api";
 	token: string;
 	private cart = [];
 	private cartItemCount = new BehaviorSubject(0);
@@ -87,6 +87,10 @@ export class CartService {
 		return this.cart;
 	}
 
+	deleteCart(){
+		return this.cart = []
+	}
+
 	getCartItemCount(): BehaviorSubject<number> {
 		return this.cartItemCount;
 	}
@@ -124,7 +128,8 @@ export class CartService {
 		product.amount = 1
 		
 			
-		this.cart.push(product); this.cartItemCount.next(this.cartItemCount.value + 1);
+		this.cart.push(product); 
+		this.cartItemCount.next(this.cartItemCount.value + 1);
 		
 		if(this.platform.is("desktop")) {
 			localStorage.setItem('cart',JSON.stringify(this.getCart()))

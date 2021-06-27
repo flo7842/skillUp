@@ -11,16 +11,17 @@ ion-header{
           color: white;
           font-size: 2rem;
         }
-      }
-  }
+    }
+}
 ion-content{
     --background: #f6efff;
     .ion-text-end{
         ion-button{
 
             border: none;
-            ion-icon{
-               
+            .close{
+               font-size: 1.5rem;
+               color: crimson;
             }
         }
     }
@@ -69,7 +70,7 @@ ion-content{
             
             ion-col{
                 font-size: 0.8rem;
-                color: white;
+                color: black;
             }
             .ion-text-end{
                 display: flex;
@@ -91,7 +92,7 @@ ion-content{
         .row-total{
             margin-top: 3rem;
             font-weight: bold;
-            color: white;
+            color: black;
         }
     }
 

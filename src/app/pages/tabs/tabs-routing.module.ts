@@ -21,12 +21,12 @@ const routes: Routes =
         ]
       },
       {
-        path: 'course',
+        path: 'catalog',
         children: [
           {
             path: '',
             loadChildren: () => 
-              import('../../pages/course/course.module').then( m => m.CoursePageModule)
+              import('../catalog/catalog.module').then( m => m.CatalogPageModule)
           }
         ]
       },

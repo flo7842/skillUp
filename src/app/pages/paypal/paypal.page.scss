@@ -1,0 +1,22 @@
+ion-header{
+    ion-toolbar{
+      color: white;
+      --background: #7353a2;
+      ion-button{
+        --box-shadow: none;
+        --background: transparent;
+      }
+    }
+      .top-row{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 2rem;
+    }
+}
+ion-content{
+    ion-card-content{
+        ion-button{
+          --background: #7353a2;
+        }
+    }
+}

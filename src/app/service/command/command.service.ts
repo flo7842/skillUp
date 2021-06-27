@@ -8,7 +8,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 })
 export class CommandService {
 
-  url: string = "https://flodevfullstack.com/api";
+  url: string = "http://localhost:3000/api";
 
   token: string;
 
@@ -17,6 +17,24 @@ export class CommandService {
     private platform: Platform,
     private storage: NativeStorage
     ) { }
+
+
+  getCommandFromUser(id:number){
+    return new Promise(async (resolve, rejects) => {
+
+      if (this.platform.is("desktop")) {
+        this.token = await JSON.parse(localStorage.getItem("token"))
+      } else {
+        this.token = JSON.parse(await this.storage.getItem("token"))
+      }
+      
+
+      this.http.get(this.url + "/commands/"+ id, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+          
+            (!data) ? rejects(data.message): resolve(data.data);
+      });
+    });
+  }
 
   getDataByCommand(id: number) {
 

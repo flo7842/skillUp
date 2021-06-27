@@ -5,7 +5,10 @@
       <a (click)="openCart()" #cart>
         <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
       </a>
-      <div class="cart-length">
+      <div
+        class="cart-length"
+        [ngClass]="cartItemCount > 0 ? '': 'hidden-cart-count'"
+      >
         {{ cartItemCount | async }}
       </div>
     </ion-row>
@@ -13,120 +16,165 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
+  <ion-row>
+    <ion-card class="card-home-top">
+      <ion-card-content>
+        <ion-card-title>Réalisez vos rêves !</ion-card-title>
+        <p class="desc-top">
+          Reconversion professionnels, Améliorer ces skills. Avec SkillUp vos
+          objectifs seront atteints !
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+  <ion-row class="row-star">
+    <h2 class="btn-star" color="black">Les mieux notées</h2>
+    <ion-slides [options]="sliderConfig">
+      <ion-slide class="slide1" *ngFor="let best of bestCoursesCat">
+        <ion-card class="card-home">
+          <ion-card-header class="card-body">
+            <img [src]="best.image" />
+          </ion-card-header>
+          <ion-card-content>
+            <div>
+              <h2 (click)="courComponent(best.id)">
+                {{ best.title.substring(0, 25) }}...
+              </h2>
+            </div>
 
-
-
-    <ion-row>
-      <ion-card class="card-home-top">
-        <ion-card-content>
-          <ion-card-title>Réalisez vos rêves !</ion-card-title>
-          <p>Reconversion professionnels, Améliorer ces skills.
-            Avec SkillUp vos objectifs seront atteints !</p>
-        </ion-card-content>
-      </ion-card>
+            <ion-row class="auteur">
+              <ion-col size="6" class="cat">
+                <p *ngFor="let cat of best.categorie">{{cat.name}}</p>
+              </ion-col>
+              <ion-col size="1"> | </ion-col>
+              <ion-col size="5" class="ion-text-end">
+                <cite>{{ best.author }}</cite>
+              </ion-col>
+            </ion-row>
+            <ion-row class="card-footer">
+              <ion-col size="6">
+                <ion-icon
+                  name="star-sharp"
+                  *ngIf="best.rate > 1 else elseBlock"
+                ></ion-icon>
+                <ng-template #elseBlock
+                  ><ion-icon name="star" class="star-empty"></ion-icon
+                ></ng-template>
+                <ion-icon
+                  name="star-sharp"
+                  *ngIf="best.rate > 2 else elseBlock"
+                ></ion-icon>
+                <ng-template #elseBlock
+                  ><ion-icon name="star" class="star-empty"></ion-icon
+                ></ng-template>
+                <ion-icon
+                  name="star-sharp"
+                  *ngIf="best.rate > 3 else elseBlock"
+                ></ion-icon>
+                <ng-template #elseBlock
+                  ><ion-icon name="star" class="star-empty"></ion-icon
+                ></ng-template>
+                <ion-icon
+                  name="star-sharp"
+                  *ngIf="best.rate > 4 else elseBlock"
+                ></ion-icon>
+                <ng-template #elseBlock
+                  ><ion-icon name="star" class="star-empty"></ion-icon
+                ></ng-template>
+                <ion-icon
+                  name="star-sharp"
+                  *ngIf="best.rate > 5 else elseBlock"
+                ></ion-icon>
+                <ng-template #elseBlock
+                  ><ion-icon name="star" class="star-empty"></ion-icon
+                ></ng-template>
+              </ion-col>
+              <ion-col size="6">
+                <span>{{ best.price.toFixed(2) }}€</span>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide class="slide1">
+        <h3 routerLink="course">Afficher tout</h3>
+      </ion-slide>
+    </ion-slides>
+  </ion-row>
+  <ion-row>
+    <ion-row no-padding class="category-banner">
+      <h2>Publié récemment</h2>
     </ion-row>
-      <ion-row class="row-star">
-        <h2 class="btn-star" color="black">
-          Les mieux notées
-        </h2>
-        <ion-slides [options]="sliderConfig">
-          <ion-slide class="slide1" *ngFor="let cour of bestCourses">
-            <ion-card class="card-home">
-              
-              
-            <ion-card-header class="card-body">
-              <img [src]="cour.image"/>
-            </ion-card-header>
-            <ion-card-content>
-              <div>
-                <h2>{{ cour.title }}</h2>
-                <h3>{{ cour.description.substring(0, 40) }} ...</h3>         
-                <cite>{{ cour.author }}</cite>
-              </div>
-              <ion-row class="card-footer">
-                <ion-col size="6">
-                  <ion-icon name="star-sharp" *ngIf="cour.rate > 1 else elseBlock"></ion-icon>
-                    <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
-                    <ion-icon name="star-sharp" *ngIf="cour.rate > 2 else elseBlock"></ion-icon>
-                    <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
-                    <ion-icon name="star-sharp" *ngIf="cour.rate > 3 else elseBlock"></ion-icon>
-                    <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
-                    <ion-icon name="star-sharp" *ngIf="cour.rate > 4 else elseBlock"></ion-icon>
-                    <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
-                    <ion-icon name="star-sharp" *ngIf="cour.rate > 5 else elseBlock"></ion-icon>
-                    <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
-                </ion-col>
-                <ion-col size="6">
-                  <span>{{ cour.price }},00€</span>
-                </ion-col>
-                
-              </ion-row>
-              <ion-row class="review">
-                <span>Les avis(12)</span>
-              </ion-row>
-            </ion-card-content>
-          </ion-card>
-          
-          </ion-slide>
+    <ion-slides [options]="sliderConfig">
+      <ion-slide class="slide1" *ngFor="let recentCourse of recentCoursesCat">
+        <ion-card class="card-home">
+          <ion-card-header class="card-body">
+            <img [src]="recentCourse.image" />
+          </ion-card-header>
+          <ion-card-content>
+            <div>
+              <h2 (click)="courComponent(recentCourse.id)">
+                {{ recentCourse.title.substring(0, 25) }}...
+              </h2>
+            </div>
 
-
-          <ion-slide class="slide1">
-          
-          </ion-slide>
-          
-        </ion-slides>
-      </ion-row>
-    <ion-row>
-          <ion-row no-padding class="category-banner">
-            <h2>
-              Publié récemment
-
-            </h2>
-          </ion-row>
-          <ion-slides [options]="sliderConfig">
-            <ion-slide class="slide1" *ngFor="let courPromo of recentCourses">
-              <ion-card class="card-home">
-              <ion-card-header class="card-body">
-                <img [src]="courPromo.image"/>
-              </ion-card-header>
-              <ion-card-content>
-                <div>
-                  <h2>{{ courPromo.title }}</h2>
-                  <h3>{{ courPromo.description.substring(0, 40) }} ...</h3>
-                </div>
-  
-                <ion-row class="auteur">
-                  <cite>{{ courPromo.author }}</cite>
-                </ion-row>
-                <ion-row class="card-footer">
-                  <ion-col size="6">
-                    <ion-icon name="star-sharp" *ngIf="courPromo.rate > 1 else elseBlock"></ion-icon>
-                      <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
-                      <ion-icon name="star-sharp" *ngIf="courPromo.rate > 2 else elseBlock"></ion-icon>
-                      <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
-                      <ion-icon name="star-sharp" *ngIf="courPromo.rate > 3 else elseBlock"></ion-icon>
-                      <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
-                      <ion-icon name="star-sharp" *ngIf="courPromo.rate > 4 else elseBlock"></ion-icon>
-                      <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
-                      <ion-icon name="star-sharp" *ngIf="courPromo.rate > 5 else elseBlock"></ion-icon>
-                      <ng-template #elseBlock><ion-icon name="star" class="toto"></ion-icon></ng-template>
-                  </ion-col>
-                  <ion-col size="6">
-                    <span>{{ courPromo.price }},00€</span>
-                  </ion-col>
-                  
-                </ion-row>
-                <ion-row class="review">
-                  <span>Les avis(12)</span>
-                </ion-row>
-              </ion-card-content>
-            </ion-card>
-          </ion-slide>
-          <ion-slide class="slide1">
-            <h3 routerLink="course">Afficher tout</h3>
-          </ion-slide>
-        </ion-slides>
-    </ion-row>
-    
+            <ion-row class="auteur">
+              <ion-col size="6" class="cat">
+                <p *ngFor="let cat of recentCourse.categorie">{{cat.name}}</p>
+              </ion-col>
+              <ion-col size="1"> | </ion-col>
+              <ion-col size="5" class="ion-text-end">
+                <cite>{{ recentCourse.author }}</cite>
+              </ion-col>
+            </ion-row>
+            <ion-row class="card-footer">
+              <ion-col size="6">
+                <ion-icon
+                  name="star-sharp"
+                  *ngIf="recentCourse.rate > 1 else elseBlock"
+                ></ion-icon>
+                <ng-template #elseBlock
+                  ><ion-icon name="star" class="star-empty"></ion-icon
+                ></ng-template>
+                <ion-icon
+                  name="star-sharp"
+                  *ngIf="recentCourse.rate > 2 else elseBlock"
+                ></ion-icon>
+                <ng-template #elseBlock
+                  ><ion-icon name="star" class="star-empty"></ion-icon
+                ></ng-template>
+                <ion-icon
+                  name="star-sharp"
+                  *ngIf="recentCourse.rate > 3 else elseBlock"
+                ></ion-icon>
+                <ng-template #elseBlock
+                  ><ion-icon name="star" class="star-empty"></ion-icon
+                ></ng-template>
+                <ion-icon
+                  name="star-sharp"
+                  *ngIf="recentCourse.rate > 4 else elseBlock"
+                ></ion-icon>
+                <ng-template #elseBlock
+                  ><ion-icon name="star" class="star-empty"></ion-icon
+                ></ng-template>
+                <ion-icon
+                  name="star-sharp"
+                  *ngIf="recentCourse.rate > 5 else elseBlock"
+                ></ion-icon>
+                <ng-template #elseBlock
+                  ><ion-icon name="star" class="star-empty"></ion-icon
+                ></ng-template>
+              </ion-col>
+              <ion-col size="6">
+                <span>{{ recentCourse.price.toFixed(2) }}€</span>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide class="slide1">
+        <h3 routerLink="course">Afficher tout</h3>
+      </ion-slide>
+    </ion-slides>
+  </ion-row>
 </ion-content>

@@ -9,6 +9,8 @@ import { CommandService } from '../../service/command/command.service';
 import { BehaviorSubject } from 'rxjs';
 import { CartPage } from '../cart/cart.page';
 import { Course } from 'src/app/interfaces/course';
+import { CartService } from 'src/app/service/cart/cart.service';
+import { CourseComponent } from 'src/app/components/course/course.component';
 
 
 @Component({
@@ -26,6 +28,12 @@ export class HomePage implements OnInit{
   isAdmin: boolean = false;
   userId: number;
   recentCourses: any;
+  recentCoursesCat: any = [];
+  bestCoursesCat: any = [];
+  categories: any = [];
+  
+  courseDetails: any = []; 
+  dateTimeCourse: any = [];
 
   cartItemCount: BehaviorSubject<number>;
 
@@ -39,19 +47,53 @@ export class HomePage implements OnInit{
     private userService: UserService,
     private courseService: CourseService,
     private commandLineService: CommandService,
+    private cartService: CartService,
     private storage: NativeStorage,
     private platform: Platform,
     private modalCtrl: ModalController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+
     ) {}
 
   async ngOnInit(){
-    this.autoLoader();
+    // this.autoLoader();
+    this.cartItemCount = this.cartService.getCartItemCount();
+
    
     this.recentCourses = await this.courseService.getRecentCourse();
     this.bestCourses = await this.courseService.getBestCourse();
-    this.commandLine = await this.commandLineService.getDataByCommand(1);
-    console.log(this.recentCourses)
+    this.categories = await this.courseService.getCategoryByIdCourses(1);
+    for(let recent of this.recentCourses){
+      this.recentCoursesCat.push({
+        id: recent.id,
+        title: recent.title,
+        author: recent.author,
+        datePublish: recent.datePublish,
+        description: recent.description,
+        image: recent.image,
+        price: recent.price,
+        rate: recent.rate,
+        categorie: await this.courseService.getCategoryByIdCourses(recent.id)
+      })
+
+    }
+    for(let best of this.bestCourses){
+      this.bestCoursesCat.push({
+        id: best.id,
+        title: best.title,
+        author: best.author,
+        datePublish: best.datePublish,
+        description: best.description,
+        image: best.image,
+        price: best.price,
+        rate: best.rate,
+        categorie: await this.courseService.getCategoryByIdCourses(best.id)
+      })
+
+    }
+
+    
+
     if (this.platform.is("desktop")) {
       
       this.user = JSON.parse(await localStorage.getItem('user'))
@@ -86,7 +128,7 @@ export class HomePage implements OnInit{
 autoLoader() {
   this.loadingCtrl.create({
     message: 'Chargement...',
-    duration: 4000
+    duration: 3500
   }).then((response) => {
     response.present();
     response.onDidDismiss().then((response) => {
@@ -103,6 +145,33 @@ autoLoader() {
       cssClass: 'cart-modal'
     })
     modal.present();
+  }
+
+
+  async courComponent(id: number){
+
+    this.courseDetails = await this.courseService.getCourseById(id)
+    this.categories = await this.courseService.getCategoryByIdCourses(id)
+    
+    let dateOnly;
+    let fr_date;
+    let hoursMin;
+    this.dateTimeCourse = this.courseDetails.datePublish
+    dateOnly = this.dateTimeCourse.substr(0,10)
+    fr_date = dateOnly.split("-").reverse().join("-");
+    hoursMin = this.dateTimeCourse.substr(11,8)
+    this.dateTimeCourse = hoursMin + " le " + fr_date
+
+    const modal = await this.modalCtrl.create({
+        component: CourseComponent,
+        componentProps: {
+            'courseDetails': this.courseDetails,
+            'courseCategories': this.categories,
+            'createdAt': this.dateTimeCourse
+          }
+      });
+      
+      return await modal.present();
   }
 
 }

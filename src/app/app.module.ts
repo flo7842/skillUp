@@ -17,12 +17,14 @@ import { CartPage } from './pages/cart/cart.page';
 import { PayPal } from '@ionic-native/paypal/ngx';
 import { UpdatePasswordComponent } from './modals/update-password/update-password.component';
 import { TutoDetailsComponent } from './modals/tuto-details/tuto-details.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
+import { CourseComponent } from './components/course/course.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, ForgotPasswordComponent, EditComponent, UpdatePasswordComponent, TutoDetailsComponent],
-  entryComponents: [ForgotPasswordComponent, EditComponent, UpdatePasswordComponent, TutoDetailsComponent],
+  declarations: [AppComponent, ForgotPasswordComponent, EditComponent, UpdatePasswordComponent, TutoDetailsComponent, InvoiceComponent, CourseComponent],
+  entryComponents: [ForgotPasswordComponent, EditComponent, UpdatePasswordComponent, TutoDetailsComponent, InvoiceComponent, CourseComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ​​HttpClientModule​​, FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NativeStorage, CartPage, PayPal, NavParams],
   bootstrap: [AppComponent],
