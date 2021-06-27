@@ -82,6 +82,7 @@ export class RegisterPage implements OnInit {
       });
       toast.present();
         console.log(err)
+        console.log("toto")
     })
   }
 

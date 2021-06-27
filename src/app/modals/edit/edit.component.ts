@@ -103,7 +103,7 @@ export class EditComponent implements OnInit {
       }
       // console.log(user.data)
       const toast = await this.toast.create({
-        message: 'Bienvenue ' + user.data.firstname,
+        message: 'Information modifié',
         color: "success",
         duration: 1000,
       });

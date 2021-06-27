@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row class="top-row" size="12">
+      <ion-button (click)="close()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-title>Éditer</ion-title>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-row size="12" class="ion-text-center">
+    <h1>Merci d'avoir passé commande {{user.firstname}}</h1>
+    <h2>Détails de la commande n°{{invoiceUser[0].CommandId}}</h2>
+  </ion-row>
+  <ion-row class="total-item">
+    <ion-col size="6" class="ion-text-center">
+      <span class="total">Total:</span>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <span class="total">{{total.toFixed(2)}}€</span>
+    </ion-col>
+  </ion-row>
+    <ion-row class="details ion-text-left">
+      <ion-col size="7">
+        <h2>Détails du cour</h2>
+      </ion-col>
+      <ion-col size="1">
+
+      </ion-col>
+      <ion-col size="4" class="ion-text-left">
+        <cite>(Taxe 20%)</cite>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row class="items" *ngFor="let invoice of invoices">
+      <ion-col size="1">
+      </ion-col>
+      <ion-col size="6">
+        <span>{{invoice.title}}</span>
+      </ion-col>
+      <ion-col size="2"> 
+        <span>Qté 1</span>
+      </ion-col>
+      <ion-col size="3" class="ion-text-center">
+        <span>{{invoice.price.toFixed(2)}}€</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <h2>Infos entreprise</h2>
+    </ion-row>
+    <ion-row class="items">
+      <ion-col size="1">
+      </ion-col>
+      <ion-col>
+        Nom:
+      </ion-col>
+      <ion-col>
+        {{invoiceUser[0].name}}
+      </ion-col>
+    </ion-row>
+    <ion-row class="items">
+      <ion-col size="1">
+      </ion-col>
+      <ion-col>
+        Raison sociale:
+      </ion-col>
+      <ion-col>
+        {{invoiceUser[0].sociale}}
+      </ion-col>
+    </ion-row>
+    <ion-row class="items">
+      <ion-col size="1">
+      </ion-col>
+      <ion-col>
+        Siret:
+      </ion-col>
+      <ion-col>
+        {{invoiceUser[0].siret}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <h2>Localisation</h2>
+    </ion-row>
+    <ion-row class="items">
+      <ion-col size="1">
+      </ion-col>
+      <ion-col>
+        Rue:
+      </ion-col>
+      <ion-col>
+        {{invoiceUser[0].street_name}}
+      </ion-col>
+    </ion-row>
+    <ion-row class="items">
+      <ion-col size="1">
+      </ion-col>
+      <ion-col>
+        Numéro:
+      </ion-col>
+      <ion-col>
+        {{invoiceUser[0].street_number}}
+      </ion-col>
+    </ion-row>
+    <ion-row class="items">
+      <ion-col size="1">
+      </ion-col>
+      <ion-col>
+        Code postal:
+      </ion-col>
+      <ion-col>
+        {{invoiceUser[0].postal_code1}}
+      </ion-col>
+    </ion-row>
+    <ion-row class="items">
+      <ion-col size="1">
+      </ion-col>
+      <ion-col>
+        Ville:
+      </ion-col>
+      <ion-col>
+        {{invoiceUser[0].city}}
+      </ion-col>
+    </ion-row>
+    <ion-row class="items country">
+      <ion-col size="1">
+      </ion-col>
+      <ion-col>
+        Pays:
+      </ion-col>
+      <ion-col>
+        {{invoiceUser[0].country}}
+      </ion-col>
+    </ion-row>
+</ion-content>

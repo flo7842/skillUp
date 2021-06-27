@@ -16,16 +16,18 @@ import { CartPage } from '../cart/cart.page';
 })
 
 export class PaypalPage implements OnInit {
-
+    total;
     idCommand: number;
     cartStorage: any;
     cartItemCount: BehaviorSubject<number>;
     data: string = '';
+    
+ 
 
-    paymentAmount: string = this.data;
+    // paymentAmount: any = this.total;
     currency: string = 'EUR';
     currencyIcon: string = '€';
-
+   
     constructor(
         private payPal: PayPal, 
         private cartPage: CartPage, 
@@ -37,42 +39,38 @@ export class PaypalPage implements OnInit {
         private cartService: CartService,
         private invoiceService: InvoiceService
     ) {
-        this.route.queryParams.subscribe(params => {
-            if (params && params.special) {
-                this.data = params.special;
-            }
-        });
+        
     }
 
+    close(){
+        this.modalCtrl.dismiss();
+      }
 
 
     async ngOnInit() {
         this.cartItemCount = await this.cartService.getCartItemCount();
     }
 
-    payWithPaypal() {
-        if (this.platform.is("desktop")) {
-        localStorage.removeItem('cart')
-        this.cartItemCount.next(0);
-    }else{
-        this.storage.remove('cart')
-        this.cartItemCount.next(0);
-    }
+    async payWithPaypal() {
 
-    this.payPal.init({
-        PayPalEnvironmentProduction: '',
-        PayPalEnvironmentSandbox: 'AQlum1LKgEJ_smmGn0jKMp4zWpxZK604wELTCHwm_dg1t-1Sf1L8Rw1491yUOp-LM9xTbdB9wQs5jGs-'
+        await this.addCartToBdd();
+
+        
+
+        this.payPal.init({
+            PayPalEnvironmentProduction: '',
+            PayPalEnvironmentSandbox: 'AQlum1LKgEJ_smmGn0jKMp4zWpxZK604wELTCHwm_dg1t-1Sf1L8Rw1491yUOp-LM9xTbdB9wQs5jGs-'
     }).then(() => {
-        this.addCartToBdd();
+        
     
         this.payPal.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
        
         })
         ).then(() => {
-            let payment = new PayPalPayment(this.data, this.currency, 'Description', 'sale');
+            let payment = new PayPalPayment(this.total, this.currency, 'Description', 'sale');
             this.payPal.renderSinglePaymentUI(payment).then((res) => {
           
-         
+                
         },(error) => {
            console.log(error)
          
@@ -93,7 +91,7 @@ export class PaypalPage implements OnInit {
          * Fetch user from localStorage
          */
         if (this.platform.is("desktop")) {
-        userId = JSON.parse(await localStorage.getItem('user')).id
+            userId = JSON.parse(await localStorage.getItem('user')).id
         
         }else{
             userId = JSON.parse(await this.storage.getItem('user')).id
@@ -124,6 +122,17 @@ export class PaypalPage implements OnInit {
 
             this.invoiceService.createInvoice("paypal", 1, command.data.id).then(async(invoice: any) => {
                 console.log(invoice)
+
+                if (this.platform.is("desktop")) {
+                    await localStorage.removeItem('cart');
+                }else{
+                    await this.storage.remove('cart');
+                }
+
+                await this.cartItemCount.next(0)
+
+                this.cartService.deleteCart()
+                
             }).catch(async(err) => {
                 console.log(err)
             })

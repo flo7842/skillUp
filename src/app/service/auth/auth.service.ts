@@ -7,7 +7,7 @@ import { User } from '../../interfaces/user';
 export class AuthService {
 
   ​​
-  url: string = "https://flodevfullstack.com/api";
+  url: string = "http://localhost:3000/api";
 
   constructor(private http: HttpClient) { }
 
@@ -21,9 +21,9 @@ export class AuthService {
 
   return new Promise((resolve, rejects) => {
     this.http.post(this.url + '/login', { email: email, user_password: user_password }).subscribe((data: any) => {
-        if(!data){
-          console.log(data)
-          rejects(false)
+        if(!data.success){
+         
+          rejects(data)
         }else{
           resolve(data);
         }    
@@ -40,8 +40,9 @@ export class AuthService {
       
     return new Promise((resolve, rejects) => {
         this.http.post(this.url + '/register', user).subscribe((data: any) => {
-          if(!data){
-            rejects(data)
+          console.log(data)
+          if(!data.message){
+            rejects(false)
           }else{
             resolve(data);
           }
@@ -60,7 +61,6 @@ export class AuthService {
         if(!data){
           rejects(data)
         }else{
-          console.log(data)
           resolve(data);
         }
       })

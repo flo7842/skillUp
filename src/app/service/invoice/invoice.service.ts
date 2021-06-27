@@ -9,7 +9,7 @@ import { Platform } from '@ionic/angular';
 })
 export class InvoiceService {
 
-  url: string = "https://flodevfullstack.com/api";
+  url: string = "http://localhost:3000/api";
 
   token: string;
 
@@ -32,8 +32,32 @@ export class InvoiceService {
       
 
       this.http.post(this.url + '/invoice', {payment_method: payment_method, CompanyId: CompanyId, CommandId: CommandId }, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
-
+        
             (!data) ? rejects(data): resolve(data);
+        });
+    });
+  }
+
+
+  getAllInvoicesByUser(id: number) {
+    
+    return new Promise(async (resolve, rejects) => {
+
+      if (this.platform.is("desktop")) {
+        this.token = await JSON.parse(localStorage.getItem("token"))
+      } else {
+        this.token = JSON.parse(await this.storage.getItem("token"))
+      }
+      
+
+      this.http.get(this.url + "/invoice-user/"+ id, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+
+            //(!data) ? rejects(data.message): resolve(data);
+            if(!data){
+              rejects(data.message)
+            }else{
+              resolve(data)
+            }
         });
     });
   }

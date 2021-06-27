@@ -1,11 +1,15 @@
-
 <ion-header>
-    <ion-toolbar>
-      <ion-row class="top-row" size="12">
+  <ion-toolbar>
+    <ion-row class="top-row" size="12">
+      <ion-button (click)="close()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      
         <ion-title>Videos du cour</ion-title>
-      </ion-row>
-    </ion-toolbar>
-  </ion-header>
+  
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true">
     <div id="screenPlayer" slot="fixed">
     </div>

@@ -9,7 +9,7 @@ import { Platform } from '@ionic/angular';
 })
 export class CourseService {
 
-  url: string = "https://flodevfullstack.com/api";
+  url: string = "http://localhost:3000/api";
 
   token: string;
   constructor(
@@ -63,6 +63,50 @@ export class CourseService {
     })
   }
 
+
+  async getCourseById(id: number){
+    if (this.platform.is("desktop")) {
+      this.token = await JSON.parse(localStorage.getItem("token"))
+    } else {
+      this.token = JSON.parse(await this.storage.getItem("token"))
+    }
+    
+    
+    return new Promise((resolve, rejects) => {
+      this.http.get(this.url + "/course/" + id, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+            if(!data){
+              rejects(false)
+            }else{
+              
+              resolve(data.data);
+            }
+      })
+    })
+  }
+
+  /**
+   * 
+   */
+  async getCategoryByIdCourses(id: number){
+    if (this.platform.is("desktop")) {
+      this.token = await JSON.parse(localStorage.getItem("token"))
+    } else {
+      this.token = JSON.parse(await this.storage.getItem("token"))
+    }
+    
+    
+    return new Promise((resolve, rejects) => {
+      this.http.get(this.url + "/categorie/" + id, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+            if(!data){
+              rejects(data)
+            }else{
+              console.log(data)
+              resolve(data.data);
+            }
+      })
+    })
+  }
+
   /**
    * Method for get all courses with best rate
    * @returns 
@@ -80,7 +124,7 @@ export class CourseService {
             if(!data){
               rejects(data)
             }else{
-              console.log(data)
+              
               resolve(data.data);
             }
       })
@@ -104,7 +148,27 @@ export class CourseService {
             if(!data){
               rejects(data)
             }else{
-              console.log(data)
+              
+              resolve(data.data);
+            }
+      })
+    })
+  }
+
+  async getCourseByCategoryName(category: string){
+    if (this.platform.is("desktop")) {
+      this.token = await JSON.parse(localStorage.getItem("token"))
+    } else {
+      this.token = JSON.parse(await this.storage.getItem("token"))
+    }
+    
+    
+    return new Promise((resolve, rejects) => {
+      this.http.get(this.url + "/category-course/" + category, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+            if(!data){
+              rejects(data)
+            }else{
+             
               resolve(data.data);
             }
       })

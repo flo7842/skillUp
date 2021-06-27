@@ -21,7 +21,7 @@ const routes: Routes = [{
   },
   {
     path: 'course',
-    loadChildren: () => import('./pages/course/course.module').then( m => m.CoursePageModule)
+    loadChildren: () => import('./pages/catalog/catalog.module').then( m => m.CatalogPageModule)
   },
   {
     path: 'profile',
@@ -41,7 +41,12 @@ const routes: Routes = [{
   },
   {
     path : 'tuto-component', component : TutoDetailsComponent
+  },
+  {
+    path: 'payment',
+    loadChildren: () => import('./pages/payment/payment.module').then( m => m.PaymentPageModule)
   }
+
 ];
 
 @NgModule({
