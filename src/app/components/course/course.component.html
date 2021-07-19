@@ -21,6 +21,11 @@
     <ion-row>
       <h1>{{ courseDetails.title }}</h1>
     </ion-row>
+    <ion-row class="img-course">
+      <ion-col size="12">
+        <img [src]="courseDetails.image" alt="Image du cours" />
+      </ion-col>
+    </ion-row>
     <ion-row class="desc">
       <p>{{ courseDetails.description }}</p>
     </ion-row>
@@ -30,6 +35,8 @@
           {{ cat.name }}
         </p>
       </ion-col>
+    </ion-row>
+    <ion-row class="desc-course">
       <ion-col size="7">
         <ion-icon
           name="star-sharp"
@@ -67,21 +74,23 @@
           ><ion-icon name="star" class="star-empty"></ion-icon
         ></ng-template>
       </ion-col>
+      <ion-col size="5">
+        <p class="price">
+          {{ courseDetails.price }}€
+        </p>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <p>Posté par {{ courseDetails.author }}</p>
-    </ion-row>
-    <ion-row>
-      <p class="posted-at">À {{ createdAt }}</p>
-    </ion-row>
-    <ion-row class="img-course">
-      <ion-col size="11">
-        <img [src]="courseDetails.image" alt="Image du cours" />
+      <ion-col size="12" class="author">
+        <p>Posté par {{ courseDetails.author }}</p>
+      </ion-col>
+      <ion-col size="12">
+        <p class="posted-at">À {{ createdAt }}</p>
       </ion-col>
     </ion-row>
     <ion-row clas="btn-cart">
       <ion-col size="12">
-        <ion-button expand="block" (click)="addToLocalStorage(courseDetails)">
+        <ion-button expand="full" (click)="addToLocalStorage(courseDetails)">
           Ajouter au panier
         </ion-button>
       </ion-col>

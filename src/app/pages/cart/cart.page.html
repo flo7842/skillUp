@@ -18,8 +18,13 @@
 						<ion-col size="4">
 							<img [src]="product.image"/>
 						</ion-col>
+						<ion-col size="6">
+							<b>{{ product.title }}</b>
+
+							{{ product.amount * product.price }}€ + 20%
+						</ion-col>
 						
-						<ion-col size="8" class="col-close">
+						<ion-col size="2" class="col-close">
 							<ion-button
 								color="medium"
 								fill="clear"
@@ -28,14 +33,10 @@
 								<ion-icon name="close-circle" slot="icon-only"></ion-icon>
 							</ion-button>
 						</ion-col>
+						
 					</ion-row>
 					<ion-row class="title">
-						<ion-col size="8">
-							<b>{{ product.description }}</b>
-						</ion-col>
-						<ion-col size="4" class="ion-text-end">
-							{{ product.amount * product.price }}€
-						</ion-col>
+						
 					</ion-row>
 				</ion-grid>
 			</ion-item>
@@ -59,7 +60,7 @@
 		
 	</div>
 	<ng-template #elseBlock>
-		<h3>Votre panier est vide</h3>
+		<h3 class="empty">Votre panier est vide</h3>
 	</ng-template>
 	<ion-button expand="full" (click)="checkout()" [disabled]="content.length == 0">PAYER</ion-button>
 </ion-content>

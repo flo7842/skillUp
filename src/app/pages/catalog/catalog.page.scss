@@ -16,6 +16,9 @@ ion-header{
 
 ion-content{
   --background: #f6efff;
+  .category-name{
+    margin-left: 2rem;
+  }
   ion-card{
     width: 100%;
     object-fit: cover;
@@ -60,7 +63,7 @@ ion-content{
         padding-right: 0!important;
         
         h2{
-          margin-left: 0;
+          margin-left: 2rem;
           text-align: left;
           font-weight: 600;
           font-size: 1rem;

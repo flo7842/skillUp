@@ -32,10 +32,13 @@
     <h2>Contact</h2>
   </ion-row>
   <ion-row class="row-item">
-    <ion-col size="12">
+    <ion-col size="12" (click)="ngIfCtrl()">
       <ion-item>
         <ion-icon name="send-outline"></ion-icon>
-        <span><a routerLink="/tuto">Nous contacter</a></span>
+        <span>Nous contacter</span>
+      </ion-item>
+      <ion-item *ngIf="hide">
+        <p position="floating">fbracq_noreply@flodevfullstack.com</p>
       </ion-item>
   </ion-col>
 </ion-row>

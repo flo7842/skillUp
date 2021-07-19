@@ -8,7 +8,7 @@ import { Platform } from '@ionic/angular';
 })
 export class UserService {
 
-    url: string = "http://localhost:3000/api";
+    url: string = "https://flodevfullstack.com/api";
 
     user: any;
     userRole: any;

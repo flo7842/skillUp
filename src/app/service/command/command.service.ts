@@ -8,7 +8,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 })
 export class CommandService {
 
-  url: string = "http://localhost:3000/api";
+  url: string = "https://flodevfullstack.com/api";
 
   token: string;
 

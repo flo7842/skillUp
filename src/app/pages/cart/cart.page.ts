@@ -20,7 +20,7 @@ export class CartPage implements OnInit {
   content: Course[] = [];
   infoValidateUser: any[] = [];
   vat: number = 20;
-
+ 
   constructor(
     private router: Router,
     private cartService: CartService,

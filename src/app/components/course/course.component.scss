@@ -36,7 +36,6 @@ ion-content{
         color: crimson;
       }
       ion-row{
-        flex-direction: column;
         .col-cat{
           display: flex;    
           justify-content: left;
@@ -44,27 +43,41 @@ ion-content{
           .category{
             background: #f39d84;
             border-radius: 17px;
-            margin: 0 2px 0 2px;
             padding: 6px;
             color: white;
+            margin-right: 3px;
             font-size: 0.8rem;
             font-weight: 550;
           }
         }
       }
-      .star-empty{
-        color: slategrey;
+      .desc-course{
+        margin-top: -2rem;
+        margin-bottom: -2rem;
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        .price{
+          color: #f39d84;
+          font-weight: 650;
+        }
+        .star-empty{
+          color: slategrey;
+        }
+        ion-icon{
+            color: yellow;
+            font-size: 1rem;
+        }
+        .desc{
+          margin-bottom: -1rem;
+        }
+        .posted-at{
+          font-size: 0.9rem;
+          margin-top: -0.8rem;
+        }
       }
-      ion-icon{
-          color: yellow;
-          font-size: 1rem;
-      }
-      .desc{
-        margin-bottom: -1rem;
-      }
-      .posted-at{
-        font-size: 0.9rem;
-        margin-top: -0.8rem;
+      .author{
+        margin-bottom: -2rem;
       }
       .img-course{
           display: flex;

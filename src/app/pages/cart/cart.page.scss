@@ -19,7 +19,7 @@ ion-content{
         ion-button{
 
             border: none;
-            .close{
+            ion-icon{
                font-size: 1.5rem;
                color: crimson;
             }
@@ -55,11 +55,11 @@ ion-content{
             
         }
         .col-close{
-            display: flex;
-            justify-content: flex-end;
+            
+      
             
             ion-button{
-                
+                font-size: 10px;
                 ion-icon{
                    
                     color: #E04853; 
@@ -95,10 +95,11 @@ ion-content{
             color: black;
         }
     }
-
+    .empty{
+        text-align: center;
+    }
     ion-button{
-        --background: linear-gradient(320deg, #992626, #7353a2);
-        border: 1px solid #45A29E;
+        --background: #7353a2;
         color: white;
     }
 

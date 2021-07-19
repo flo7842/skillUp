@@ -62,43 +62,6 @@ ion-content{
             }
 
         }
-
-        .log-external{
-            text-align: center;
-            display: block;
-            margin-bottom: 2rem;
-            h2{
-                margin-top: 2rem;
-                font-weight: bold;
-            }
-            ion-col{
-                display: flex;
-                justify-content: center;
-                .log{
-                    padding: 5px;
-                    border-radius: 10px;
-                    display: flex;
-                }
-                .fb-connect{
-                    background: #002870;
-                    margin-right: 2px;
-                }
-                .gg-connect{
-                    background: linear-gradient(228deg, #b56e25, #a50505);
-                    margin-left: 2px;
-                    padding: 5px;
-                    border-radius: 5px;
-                    display: flex;
-                }
-               
-                ion-icon{
-                    color: white;
-                    font-size: 2rem;
-                }
-
-                
-            }
-        }
         a{
             font-size: 1rem;
             color: #020122;

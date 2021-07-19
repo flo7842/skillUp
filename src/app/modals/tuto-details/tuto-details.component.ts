@@ -40,7 +40,7 @@ export class TutoDetailsComponent implements AfterViewInit, OnInit {
 
     }
 
-    // Permet de lancer la lecture vidéo
+    // Allow run video player
     async play(url: string) {
         
         const res:any = await this.videoCourse.initPlayer({mode: "fullscreen",

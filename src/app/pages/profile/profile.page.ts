@@ -15,6 +15,9 @@ export class ProfilePage implements OnInit {
   userName: any;
   user: any;
   avatar: string;
+
+  hide:boolean = false;
+
   constructor(
     private modal: ModalController,
     private storage: NativeStorage,
@@ -36,6 +39,10 @@ export class ProfilePage implements OnInit {
     this.userName = this.user.user_name
     this.avatar = this.user.avatar
   
+  }
+
+  ngIfCtrl(){
+    this.hide = !this.hide;
   }
 
   async edit() {
