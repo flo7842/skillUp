@@ -4,6 +4,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { PayPal, PayPalConfiguration, PayPalPayment } from '@ionic-native/paypal/ngx';
 import { ModalController, Platform } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+
 import { CartService } from 'src/app/service/cart/cart.service';
 import { InvoiceService } from 'src/app/service/invoice/invoice.service';
 
@@ -16,36 +17,33 @@ import { CartPage } from '../cart/cart.page';
 })
 
 export class PaypalPage implements OnInit {
+    
     total;
     idCommand: number;
     cartStorage: any;
     cartItemCount: BehaviorSubject<number>;
     data: string = '';
     
- 
-
-    // paymentAmount: any = this.total;
     currency: string = 'EUR';
     currencyIcon: string = '€';
    
     constructor(
-        private payPal: PayPal, 
-        private cartPage: CartPage, 
         private route: ActivatedRoute, 
         private router: Router, 
         private modalCtrl: ModalController,
         private storage: NativeStorage,
         private platform: Platform,
         private cartService: CartService,
-        private invoiceService: InvoiceService
+        private invoiceService: InvoiceService,
+        private payPal: PayPal, 
+        private cartPage: CartPage, 
     ) {
         
     }
 
     close(){
         this.modalCtrl.dismiss();
-      }
-
+    }
 
     async ngOnInit() {
         this.cartItemCount = await this.cartService.getCartItemCount();
@@ -55,18 +53,15 @@ export class PaypalPage implements OnInit {
 
         await this.addCartToBdd();
 
-        
-
         this.payPal.init({
             PayPalEnvironmentProduction: '',
             PayPalEnvironmentSandbox: 'AQlum1LKgEJ_smmGn0jKMp4zWpxZK604wELTCHwm_dg1t-1Sf1L8Rw1491yUOp-LM9xTbdB9wQs5jGs-'
-    }).then(() => {
+        }).then(() => {
         
     
         this.payPal.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
        
-        })
-        ).then(() => {
+        })).then(() => {
             let payment = new PayPalPayment(this.total, this.currency, 'Description', 'sale');
             this.payPal.renderSinglePaymentUI(payment).then((res) => {
           
@@ -75,13 +70,13 @@ export class PaypalPage implements OnInit {
            console.log(error)
          
         });
-    }, () => {
-       
-    });
-    }, () => {
-     
-    });
-  }
+        }, () => {
+        
+        });
+        }, () => {
+        
+        });
+    }
 
     async addCartToBdd(){
         let user;
@@ -136,13 +131,8 @@ export class PaypalPage implements OnInit {
             }).catch(async(err) => {
                 console.log(err)
             })
-
-
-        }).catch(async(err) => {
-                
-            console.log(err)
-                    
+        }).catch(async(err) => { 
+            console.log(err)     
         })
     }
-
 }

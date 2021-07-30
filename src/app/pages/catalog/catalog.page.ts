@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from '../../interfaces/course';
-import { CourseService } from '../../service/course/course.service';
-import { CartService } from '../../service/cart/cart.service';
 import { ModalController, Platform } from '@ionic/angular';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { BehaviorSubject } from 'rxjs';
+
+import { CourseService } from '../../service/course/course.service';
+import { CartService } from '../../service/cart/cart.service';
+import { Course } from '../../interfaces/course';
 import { CartPage } from '../cart/cart.page';
 import { CourseComponent } from 'src/app/components/course/course.component';
-import { BehaviorSubject } from 'rxjs';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-course',
@@ -15,82 +17,109 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CatalogPage implements OnInit {
 
-  cartItemCount: BehaviorSubject<number>;
+    cartItemCount: BehaviorSubject<number>;
 
-  courses: any = [];
-  coursesNode: any = []; 
-  coursesJs: any = []; 
-  coursesSql: any = []; 
-  coursesPhp: any = [];
-  coursesSymfony: any = [];
-  coursesNodeJs: Course[];
-  idCommand: number;
-  courseDetails: any = []; 
+    courses: any = [];
+    coursesNode: any = []; 
+    coursesJs: any = []; 
+    coursesSql: any = []; 
+    coursesPhp: any = [];
+    coursesSymfony: any = [];
+    coursesNodeJs: Course[];
+    idCommand: number;
+    courseDetails: any = []; 
 
-  dateTimeCourse: any = [];
+    dateTimeCourse: any = [];
 
-  categories: any = [];
+    categories: any = [];
 
 
-  sliderConfig = {
-    spaceBetween: 0,
-    centeredSlides: true,
-    slidesPerView: 1.3
-  }
+    sliderConfig = {
+        spaceBetween: 0,
+        centeredSlides: true,
+        slidesPerView: 1.3
+    }
 
-  constructor(
-    private courseService: CourseService, 
-    private cartService: CartService,
-    private platform: Platform,
-    private storage: NativeStorage,
-    private modalCtrl: ModalController
-    ) { }
+    constructor(
+        private platform: Platform,
+        private storage: NativeStorage,
+        private modalCtrl: ModalController,
+        public loadingCtrl: LoadingController,
+        private courseService: CourseService, 
+        private cartService: CartService
+        ) { }
 
-  async ngOnInit() {
-    this.coursesNode = await this.courseService.getCourseByCategoryName('NodeJS');
-    this.coursesJs = await this.courseService.getCourseByCategoryName('JavaScript');
-    this.coursesSql = await this.courseService.getCourseByCategoryName('SQL');
-    this.coursesPhp = await this.courseService.getCourseByCategoryName('PHP');
-    this.coursesSymfony = await this.courseService.getCourseByCategoryName('Symfony');
-    this.cartItemCount = this.cartService.getCartItemCount();
-  }
+    async ngOnInit() {
 
-  async openCart(){
-    const modal = await this.modalCtrl.create({
-      component: CartPage,
-      cssClass: 'cart-modal'
-    })
-    modal.present();
-  }
+        this.autoLoader();
 
-  
+        this.coursesNode = await this.courseService.getCourseByCategoryName('NodeJS');
+        this.coursesJs = await this.courseService.getCourseByCategoryName('JavaScript');
+        this.coursesSql = await this.courseService.getCourseByCategoryName('SQL');
+        this.coursesPhp = await this.courseService.getCourseByCategoryName('PHP');
+        this.coursesSymfony = await this.courseService.getCourseByCategoryName('Symfony');
+        this.cartItemCount = this.cartService.getCartItemCount();
+        this.dismissLoader();
+    }
 
-  async courComponent(id: number){
+    dismissLoader() {
+        this.loadingCtrl.dismiss().then((response) => {
+            console.log('Loader closed!', response);
+        }).catch((err) => {
+            console.log('Error occured : ', err);
+        });
+    }
 
-    this.courseDetails = await this.courseService.getCourseById(id)
-    this.categories = await this.courseService.getCategoryByIdCourses(id)
+    autoLoader() {
+        this.loadingCtrl.create({
+            message: 'Chargement...',
+        
+        }).then((response) => {
+            response.present();
+            response.onDidDismiss().then((response) => {
+                console.log('Loader dismissed', response);
+            });
+        });
+    }
     
-    let dateOnly;
-    let fr_date;
-    let hoursMin;
-    this.dateTimeCourse = this.courseDetails.datePublish
-    dateOnly = this.dateTimeCourse.substr(0,10)
-    fr_date = dateOnly.split("-").reverse().join("-");
-    hoursMin = this.dateTimeCourse.substr(11,8)
-    this.dateTimeCourse = hoursMin + " le " + fr_date
+    async openCart(){
+        const modal = await this.modalCtrl.create({
+        component: CartPage,
+        cssClass: 'cart-modal'
+        })
+        modal.present();
+    }
 
-    const modal = await this.modalCtrl.create({
-        component: CourseComponent,
-        componentProps: {
-            'courseDetails': this.courseDetails,
-            'courseCategories': this.categories,
-            'createdAt': this.dateTimeCourse
-          }
-      });
-      
-      return await modal.present();
-  }
   
+    /**
+     * Method for open cour component
+     * @param id 
+     * @returns 
+     */
+    async courComponent(id: number){
 
+        this.courseDetails = await this.courseService.getCourseById(id)
+        this.categories = await this.courseService.getCategoryByIdCourses(id)
+        
+        let dateOnly;
+        let fr_date;
+        let hoursMin;
+        this.dateTimeCourse = this.courseDetails.datePublish
+        dateOnly = this.dateTimeCourse.substr(0,10)
+        fr_date = dateOnly.split("-").reverse().join("-");
+        hoursMin = this.dateTimeCourse.substr(11,8)
+        this.dateTimeCourse = hoursMin + " le " + fr_date
+
+        const modal = await this.modalCtrl.create({
+            component: CourseComponent,
+            componentProps: {
+                'courseDetails': this.courseDetails,
+                'courseCategories': this.categories,
+                'createdAt': this.dateTimeCourse
+            }
+        });
+
+        return await modal.present();
+    }
 
 }

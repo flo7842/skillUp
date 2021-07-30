@@ -9,32 +9,34 @@ import { Platform } from '@ionic/angular';
 })
 export class CompanyService {
 
-  url: string = "https://flodevfullstack.com/api";
+    url: string = "https://flodevfullstack.com/api";
 
-  token: string;
+    token: string;
 
-  constructor(
-    private http: HttpClient,
-    private storage: NativeStorage,
-    private platform: Platform
-  ) { }
+    constructor(
+        private http: HttpClient,
+        private storage: NativeStorage,
+        private platform: Platform
+    ) { }
 
-  getData(id: number) {
-
+    /**
+     * Method to recover company
+     * @param id
+     * @returns 
+     */
+    getData(id: number) {
     
-    return new Promise(async (resolve, rejects) => {
+        return new Promise(async (resolve, rejects) => {
 
-      if (this.platform.is("desktop")) {
-        this.token = await JSON.parse(localStorage.getItem("token"))
-      } else {
-        this.token = JSON.parse(await this.storage.getItem("token"))
-      }
-     
-
-      this.http.get(this.url + "/company/"+ id, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
-
-            (!data) ? rejects(data.message): resolve(data);
+            if (this.platform.is("desktop")) {
+                this.token = await JSON.parse(localStorage.getItem("token"))
+            } else {
+                this.token = JSON.parse(await this.storage.getItem("token"))
+            }
+        
+            this.http.get(this.url + "/company/"+ id, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+                (!data) ? rejects(data.message): resolve(data);
+            });
         });
-    });
-  }
+    }
 }

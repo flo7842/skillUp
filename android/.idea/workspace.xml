@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
@@ -30,25 +30,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/capacitor.build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/capacitor.build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/components/course/course.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/components/course/course.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/components/course/course.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/components/course/course.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/pages/cart/cart.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/cart/cart.page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/pages/cart/cart.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/cart/cart.page.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/pages/cart/cart.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/cart/cart.page.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/pages/catalog/catalog.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/catalog/catalog.page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/pages/catalog/catalog.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/catalog/catalog.page.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/pages/home/home.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/home/home.page.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/pages/home/home.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/home/home.page.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/pages/login/login.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/login/login.page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/pages/login/login.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/login/login.page.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/pages/profile/profile.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/profile/profile.page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/pages/profile/profile.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/profile/profile.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modals/forgot-password/forgot-password.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modals/forgot-password/forgot-password.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/pages/login/login.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/login/login.page.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/service/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/service/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/service/cart/cart.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/service/cart/cart.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/service/command/command.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/service/command/command.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/service/company/company.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/service/company/company.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/service/course/course.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/service/course/course.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/service/invoice/invoice.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/service/invoice/invoice.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/service/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/service/user/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +41,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\Flori\.android\avd\Pixel_2_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@R3CMA0G7NDV]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -166,21 +151,33 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1623491561396">
+    <state x="321" y="76" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1625076433346">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1623491561396" />
-    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1623491561396">
+    <state x="321" y="76" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.680@0.0.1280.680" timestamp="1625076433346" />
+    <state x="93" y="93" width="1095" height="495" key="AVDManager" timestamp="1627054318999">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1623491561396" />
-    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1623491561396">
+    <state x="93" y="93" width="1095" height="495" key="AVDManager/0.0.1280.680/-2880.0.1920.1040@0.0.1280.680" timestamp="1627054318999" />
+    <state width="1038" height="273" key="GridCell.Tab.0.bottom" timestamp="1627630957344">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1623491561396" />
-    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1623491561396">
+    <state width="1046" height="167" key="GridCell.Tab.0.bottom/0.0.1280.680/-2880.0.1920.1040@0.0.1280.680" timestamp="1627054761817" />
+    <state width="1038" height="273" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1627630957344" />
+    <state width="1038" height="273" key="GridCell.Tab.0.center" timestamp="1627630957343">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1623491561396" />
+    <state width="1046" height="167" key="GridCell.Tab.0.center/0.0.1280.680/-2880.0.1920.1040@0.0.1280.680" timestamp="1627054761817" />
+    <state width="1038" height="273" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1627630957343" />
+    <state width="1038" height="273" key="GridCell.Tab.0.left" timestamp="1627630957342">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1046" height="167" key="GridCell.Tab.0.left/0.0.1280.680/-2880.0.1920.1040@0.0.1280.680" timestamp="1627054761817" />
+    <state width="1038" height="273" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1627630957342" />
+    <state width="1038" height="273" key="GridCell.Tab.0.right" timestamp="1627630957343">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1046" height="167" key="GridCell.Tab.0.right/0.0.1280.680/-2880.0.1920.1040@0.0.1280.680" timestamp="1627054761817" />
+    <state width="1038" height="273" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1627630957343" />
   </component>
 </project>

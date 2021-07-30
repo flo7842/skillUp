@@ -35,7 +35,7 @@ export class TutoPage implements OnInit {
         street_number: undefined,
         batiment: '',
         postal_code: '',
-        }
+    }
 
     userCourse: any;
     videoCourses: any = []; 
@@ -43,44 +43,40 @@ export class TutoPage implements OnInit {
     videoPlayer: any;
     
     id: number;
+
     constructor(
-        private userService: UserService,
         private platform: Platform,
         private storage: NativeStorage,
         private route: ActivatedRoute,
         private router: Router,
-        private modal: ModalController
+        private modal: ModalController,
+        private userService: UserService
         ) { }
 
     async ngOnInit() {
         if (this.platform.is("desktop")) {
 
-        this.user = await JSON.parse(localStorage.getItem('user'));
+            this.user = await JSON.parse(localStorage.getItem('user'));
         
         } else {
-        this.user = JSON.parse(await this.storage.getItem('user'));
+            this.user = JSON.parse(await this.storage.getItem('user'));
         }
 
         this.userCourse = await this.userService.getTutosUser(this.user.id)
-        
     }
 
 
     async videoComponent(id: number, title: string) {
         this.videoCourses = await this.userService.getTutosVideosUser(id)
        
-        //this.router.navigateByUrl('/dynamic', { state: { id:1 , name:'Angular' } });
         const modal = await this.modal.create({
             component: TutoDetailsComponent,
             componentProps: {
                 'videoCourse': this.videoCourses,
                 'titleCourse': title,
-              }
-          });
-          //this.router.navigateByUrl("/tuto-component");
-          return await modal.present();
+            }
+        });
+        return await modal.present();
     }
-
     
-
 }

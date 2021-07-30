@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from './../../interfaces/user';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { Platform } from '@ionic/angular';
+import { User } from './../../interfaces/user';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +14,6 @@ export class UserService {
     user: any;
     userRole: any;
     token: string;
-    private firstName: string;
 
     constructor(
         private http: HttpClient,
@@ -23,11 +23,11 @@ export class UserService {
 
     async getUser(){
         if (this.platform.is("desktop")) {
-            this.user = await JSON.parse(localStorage.getItem("user"))
+            this.user = await JSON.parse(localStorage.getItem("user"));
         } else {
-            this.user = JSON.parse(await this.storage.getItem("user"))
+            this.user = JSON.parse(await this.storage.getItem("user"));
         }
-        return this.user
+        return this.user;
     }
 
     /**
@@ -37,29 +37,28 @@ export class UserService {
      */
     getUserByRole(id: number) {
 
-        let tabRole = []
+        let tabRole = [];
         return new Promise((resolve, rejects) => {
             this.http.get(this.url + '/user/'+ id).subscribe((data: any) => {
-            if(!data){
-                
-                rejects(false)
-            }else{
-                this.userRole = data.data
-                tabRole.push(this.userRole.Roles);
-                let roles = search("admin",tabRole[0])
-                
-                
-                resolve(roles);
-            }
+                if(!data){
+                    rejects(false);
+                }else{
+                    this.userRole = data.data;
+                    tabRole.push(this.userRole.Roles);
+                    let roles = search("admin",tabRole[0]);
+                    
+                    resolve(roles);
+                }
             });
         });
 
+        // Allow you to fetch role by name
         function search(nameKey, myArray){
-        for (var i=0; i < myArray.length; i++) {
-            if (myArray[i].name == nameKey) {
-                return myArray[i];
+            for (var i=0; i < myArray.length; i++) {
+                if (myArray[i].name == nameKey) {
+                    return myArray[i];
+                }
             }
-        }
         }
     }
 
@@ -73,20 +72,19 @@ export class UserService {
         return new Promise(async(resolve, rejects) => {
 
         if (this.platform.is("desktop")) {
-            this.token = await JSON.parse(localStorage.getItem("token"))
+            this.token = await JSON.parse(localStorage.getItem("token"));
         } else {
-            this.token = JSON.parse(await this.storage.getItem("token"))
+            this.token = JSON.parse(await this.storage.getItem("token"));
         }
         
         
         this.http.put(this.url + "/user/"+ id, user, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
-            //(!data.success) ? rejects(data.message): resolve(data);
-            if(!data){
-            rejects(data)
-        }else{
-            resolve(data);
-        }
-        });
+                if(!data){
+                    rejects(data);
+                }else{
+                    resolve(data);
+                }
+            });
         });
     }
 
@@ -100,48 +98,35 @@ export class UserService {
     async updatePassword(id: number, oldpass: string, user_password: string){
         return new Promise(async(resolve, rejects) => {
 
-            if (this.platform.is("desktop")) {
-                this.token = await JSON.parse(localStorage.getItem("token"))
-            } else {
-                this.token = JSON.parse(await this.storage.getItem("token"))
-            }
-            
-            
-            this.http.put(this.url + "/reset-password-modify/"+ id, {oldpass: oldpass, user_password: user_password}, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
-                //(!data.success) ? rejects(data.message): resolve(data);
-                if(!data){
-                rejects(false)
-            }else{
-                resolve(data);
-            }
-            });
+            this.http.put(this.url + "/reset-password-modify/"+ id, {oldpass: oldpass, user_password: user_password}).subscribe((data: any) => {
+                if(data){
+                    resolve(data);
+                }
+            }, (err) => {
+                rejects(false);
+            })
         });
     }
 
     
     /**
-     * 
+     * Method to recover course by user
      * @param id 
      * @returns 
      */
     async getTutosUser(id: number){
-
-        
         return new Promise(async(resolve, rejects) => {
 
             if (this.platform.is("desktop")) {
-                this.token = await JSON.parse(localStorage.getItem("token"))
+                this.token = await JSON.parse(localStorage.getItem("token"));
             } else {
-                this.token = JSON.parse(await this.storage.getItem("token"))
+                this.token = JSON.parse(await this.storage.getItem("token"));
             }
             
-            
             this.http.get(this.url + "/user-courses/"+ id, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
-                //(!data.success) ? rejects(data.message): resolve(data);
                 if(!data){
-                rejects(false)
+                rejects(false);
             }else{
-                //console.log(data)
                 resolve(data.data);
             }
             });
@@ -155,24 +140,21 @@ export class UserService {
      */
     async getTutosVideosUser(id: number){
 
-        
         return new Promise(async(resolve, rejects) => {
 
             if (this.platform.is("desktop")) {
-                this.token = await JSON.parse(localStorage.getItem("token"))
+                this.token = await JSON.parse(localStorage.getItem("token"));
             } else {
-                this.token = JSON.parse(await this.storage.getItem("token"))
+                this.token = JSON.parse(await this.storage.getItem("token"));
             }
-            
             
             this.http.get(this.url + "/user-videos/"+ id, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
-                //(!data.success) ? rejects(data.message): resolve(data);
+                
                 if(!data){
-                rejects(false)
-            }else{
-                console.log(data)
-                resolve(data.data);
-            }
+                    rejects(false);
+                }else{
+                    resolve(data.data);
+                }
             });
         });
     }

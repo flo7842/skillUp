@@ -18,40 +18,44 @@ export class CommandService {
     private storage: NativeStorage
     ) { }
 
+    /**
+     * 
+     * @param id 
+     * @returns 
+     */
+    getCommandFromUser(id:number){
+        return new Promise(async (resolve, rejects) => {
 
-  getCommandFromUser(id:number){
-    return new Promise(async (resolve, rejects) => {
-
-      if (this.platform.is("desktop")) {
-        this.token = await JSON.parse(localStorage.getItem("token"))
-      } else {
-        this.token = JSON.parse(await this.storage.getItem("token"))
-      }
+            if(this.platform.is("desktop")) {
+                this.token = await JSON.parse(localStorage.getItem("token"));
+            } else {
+                this.token = JSON.parse(await this.storage.getItem("token"));
+            }
       
-
-      this.http.get(this.url + "/commands/"+ id, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
-          
-            (!data) ? rejects(data.message): resolve(data.data);
-      });
-    });
-  }
-
-  getDataByCommand(id: number) {
-
-    
-    return new Promise(async (resolve, rejects) => {
-
-      if (this.platform.is("desktop")) {
-        this.token = await JSON.parse(localStorage.getItem("token"))
-      } else {
-        this.token = JSON.parse(await this.storage.getItem("token"))
-      }
-      
-
-      this.http.get(this.url + "/command-line/"+ id, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
-
-            (!data) ? rejects(data.message): resolve(data);
+            this.http.get(this.url + "/commands/"+ id, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+                (!data) ? rejects(data.message): resolve(data.data);
+            });
         });
-    });
-  }
+    }
+
+    /**
+     * 
+     * @param id 
+     * @returns 
+     */
+    getDataByCommand(id: number) {
+    
+        return new Promise(async (resolve, rejects) => {
+            if(this.platform.is("desktop")) {
+                this.token = await JSON.parse(localStorage.getItem("token"))
+            } else {
+                this.token = JSON.parse(await this.storage.getItem("token"))
+            }
+        
+
+            this.http.get(this.url + "/command-line/"+ id, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+                (!data) ? rejects(data.message): resolve(data);
+            });
+        });
+    }
 }
