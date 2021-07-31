@@ -1,37 +1,37 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-row class="top-row" size="12">
-      <ion-button (click)="close()">
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </ion-button>
-      <ion-title>Paypal</ion-title>
-    </ion-row>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-row class="top-row" size="12">
+            <ion-button (click)="close()">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title>Paypal</ion-title>
+        </ion-row>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        Cliquez sur le bouton suivant pour valider votre paiement.
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-card class="welcome-card">
-    <ion-img src="../../../assets/image/paypal.png"></ion-img>
-    <ion-card-header>
-      <ion-card-subtitle>Payer avec Paypal</ion-card-subtitle>
-      <ion-card-title>Votre paiement</ion-card-title>
-      <ion-row>
-        <ion-col>
-          Total:
-        </ion-col>
-        <ion-col>
-          {{total}}{{currencyIcon}}
-        </ion-col>
-      </ion-row>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-button expand="full" (click)="payWithPaypal()">Payer avec PayPal</ion-button>
-    </ion-card-content>
-  </ion-card>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                Cliquez sur le bouton suivant pour valider votre paiement.
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-card class="welcome-card"><!-- Start card details paypal payment -->
+        <ion-img src="../../../assets/image/paypal.png"></ion-img>
+        <ion-card-header>
+            <ion-card-subtitle>Payer avec Paypal</ion-card-subtitle>
+            <ion-card-title>Votre paiement</ion-card-title>
+            <ion-row>
+                <ion-col>
+                Total:
+                </ion-col>
+                <ion-col>
+                {{total}}{{currencyIcon}}
+                </ion-col>
+            </ion-row>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-button expand="full" (click)="payWithPaypal()">Payer avec PayPal</ion-button>
+        </ion-card-content>
+    </ion-card><!-- End card details paypal payment -->
 </ion-content>

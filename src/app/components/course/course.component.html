@@ -1,99 +1,99 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-row class="top-row" size="12">
-      <ion-title>Catalogue</ion-title>
-      <a (click)="openCart()" #cart>
-        <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
-      </a>
-      <div class="cart-length">
-        {{ cartItemCount | async }}
-      </div>
-    </ion-row>
-  </ion-toolbar>
+    <ion-toolbar>
+            <ion-row class="top-row" size="12">
+                <ion-title>Catalogue</ion-title>
+                <a (click)="openCart()" #cart>
+                    <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
+                </a>
+                <div class="cart-length">
+                    {{ cartItemCount | async }}
+                </div>
+            </ion-row>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div>
-    <div class="ion-text-end close-div">
-      <ion-button (click)="close()" fill="clear" color="white">
-        <ion-icon name="close" slot="start" class="close"></ion-icon>
-      </ion-button>
+    <div>
+        <div class="ion-text-end close-div">
+            <ion-button (click)="close()" fill="clear" color="white">
+                <ion-icon name="close" slot="start" class="close"></ion-icon>
+            </ion-button>
+        </div>
+        <ion-row>
+            <h1>{{ courseDetails.title }}</h1>
+        </ion-row>
+        <ion-row class="img-course">
+            <ion-col size="12">
+                <img [src]="courseDetails.image" alt="Image du cours" />
+            </ion-col>
+        </ion-row>
+        <ion-row class="desc">
+            <p>{{ courseDetails.description }}</p>
+        </ion-row>
+        <ion-row class="row-cat">
+            <ion-col class="col-cat" size="5">
+                <p *ngFor="let cat of courseCategories" class="category">
+                    {{ cat.name }}
+                </p>
+            </ion-col>
+        </ion-row>
+        <ion-row class="desc-course">
+            <ion-col size="7">
+                <ion-icon
+                    name="star-sharp"
+                    *ngIf="courseDetails.rate > 1; else elseBlock">
+                </ion-icon>
+                <ng-template #elseBlock>
+                    <ion-icon name="star" class="star-empty"></ion-icon>
+                </ng-template>
+                <ion-icon
+                    name="star-sharp"
+                    *ngIf="courseDetails.rate > 2; else elseBlock">
+                </ion-icon>
+                <ng-template #elseBlock>
+                    <ion-icon name="star" class="star-empty"></ion-icon>
+                </ng-template>
+                <ion-icon
+                    name="star-sharp"
+                    *ngIf="courseDetails.rate > 3; else elseBlock">
+                </ion-icon>
+                <ng-template #elseBlock>
+                    <ion-icon name="star" class="star-empty"></ion-icon>
+                </ng-template>
+                <ion-icon
+                    name="star-sharp"
+                    *ngIf="courseDetails.rate > 4; else elseBlock">
+                </ion-icon>
+                <ng-template #elseBlock>
+                    <ion-icon name="star" class="star-empty"></ion-icon>
+                </ng-template>
+                <ion-icon
+                    name="star-sharp"
+                    *ngIf="courseDetails.rate > 5; else elseBlock">
+                </ion-icon>
+                <ng-template #elseBlock>
+                    <ion-icon name="star" class="star-empty"></ion-icon>
+                </ng-template>
+            </ion-col>
+            <ion-col size="5">
+                <p class="price">
+                    {{ courseDetails.price }}€
+                </p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" class="author">
+                <p class="desc-post">Posté par {{ courseDetails.author }}</p>
+            </ion-col>
+            <ion-col size="12">
+                <p class="posted-at desc-post">À {{ createdAt }}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row clas="btn-cart">
+            <ion-col size="12" class="row-add-course">
+                <ion-button (click)="addToLocalStorage(courseDetails)">
+                    Ajouter au panier
+                </ion-button>
+            </ion-col>
+        </ion-row>
     </div>
-    <ion-row>
-      <h1>{{ courseDetails.title }}</h1>
-    </ion-row>
-    <ion-row class="img-course">
-      <ion-col size="12">
-        <img [src]="courseDetails.image" alt="Image du cours" />
-      </ion-col>
-    </ion-row>
-    <ion-row class="desc">
-      <p>{{ courseDetails.description }}</p>
-    </ion-row>
-    <ion-row>
-      <ion-col class="col-cat" size="5">
-        <p *ngFor="let cat of courseCategories" class="category">
-          {{ cat.name }}
-        </p>
-      </ion-col>
-    </ion-row>
-    <ion-row class="desc-course">
-      <ion-col size="7">
-        <ion-icon
-          name="star-sharp"
-          *ngIf="courseDetails.rate > 1; else elseBlock"
-        ></ion-icon>
-        <ng-template #elseBlock
-          ><ion-icon name="star" class="star-empty"></ion-icon
-        ></ng-template>
-        <ion-icon
-          name="star-sharp"
-          *ngIf="courseDetails.rate > 2; else elseBlock"
-        ></ion-icon>
-        <ng-template #elseBlock
-          ><ion-icon name="star" class="star-empty"></ion-icon
-        ></ng-template>
-        <ion-icon
-          name="star-sharp"
-          *ngIf="courseDetails.rate > 3; else elseBlock"
-        ></ion-icon>
-        <ng-template #elseBlock
-          ><ion-icon name="star" class="star-empty"></ion-icon
-        ></ng-template>
-        <ion-icon
-          name="star-sharp"
-          *ngIf="courseDetails.rate > 4; else elseBlock"
-        ></ion-icon>
-        <ng-template #elseBlock
-          ><ion-icon name="star" class="star-empty"></ion-icon
-        ></ng-template>
-        <ion-icon
-          name="star-sharp"
-          *ngIf="courseDetails.rate > 5; else elseBlock"
-        ></ion-icon>
-        <ng-template #elseBlock
-          ><ion-icon name="star" class="star-empty"></ion-icon
-        ></ng-template>
-      </ion-col>
-      <ion-col size="5">
-        <p class="price">
-          {{ courseDetails.price }}€
-        </p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12" class="author">
-        <p>Posté par {{ courseDetails.author }}</p>
-      </ion-col>
-      <ion-col size="12">
-        <p class="posted-at">À {{ createdAt }}</p>
-      </ion-col>
-    </ion-row>
-    <ion-row clas="btn-cart">
-      <ion-col size="12">
-        <ion-button expand="full" (click)="addToLocalStorage(courseDetails)">
-          Ajouter au panier
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </div>
 </ion-content>

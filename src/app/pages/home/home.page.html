@@ -1,180 +1,177 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-row class="top-row" size="12">
-      <ion-title>Accueil</ion-title>
-      <a (click)="openCart()" #cart>
-        <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
-      </a>
-      <div
-        class="cart-length"
-        [ngClass]="cartItemCount > 0 ? '': 'hidden-cart-count'"
-      >
-        {{ cartItemCount | async }}
-      </div>
-    </ion-row>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-row class="top-row" size="12">
+            <ion-title>Accueil</ion-title>
+            <a (click)="openCart()" #cart>
+                <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
+            </a>
+            <div
+                class="cart-length"
+                [ngClass]="cartItemCount > 0 ? '': 'hidden-cart-count'"
+            >
+                {{ cartItemCount | async }}
+            </div>
+        </ion-row>
+    </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-row>
-    <ion-card class="card-home-top">
-      <ion-card-content>
-        <ion-card-title>Réalisez vos rêves !</ion-card-title>
-        <p class="desc-top">
-          Reconversion professionnels, Améliorer ces skills. Avec SkillUp vos
-          objectifs seront atteints !
-        </p>
-      </ion-card-content>
-    </ion-card>
-  </ion-row>
-  <ion-row class="row-star">
-    <h2 class="btn-star" color="black">Les mieux notées</h2>
-    <ion-slides [options]="sliderConfig">
-      <ion-slide class="slide1" *ngFor="let best of bestCoursesCat">
-        <ion-card class="card-home">
-          <ion-card-header class="card-body">
-            <img [src]="best.image" />
-          </ion-card-header>
-          <ion-card-content>
-            <div>
-              <h2 (click)="courComponent(best.id)">
-                {{ best.title.substring(0, 25) }}...
-              </h2>
-            </div>
-
-            <ion-row class="auteur">
-              <ion-col size="6" class="cat">
-                <p *ngFor="let cat of best.categorie">{{cat.name}}</p>
-              </ion-col>
-              <ion-col size="1"> | </ion-col>
-              <ion-col size="5" class="ion-text-end">
-                <cite>{{ best.author }}</cite>
-              </ion-col>
-            </ion-row>
-            <ion-row class="card-footer">
-              <ion-col size="6">
-                <ion-icon
-                  name="star-sharp"
-                  *ngIf="best.rate > 1 else elseBlock"
-                ></ion-icon>
-                <ng-template #elseBlock
-                  ><ion-icon name="star" class="star-empty"></ion-icon
-                ></ng-template>
-                <ion-icon
-                  name="star-sharp"
-                  *ngIf="best.rate > 2 else elseBlock"
-                ></ion-icon>
-                <ng-template #elseBlock
-                  ><ion-icon name="star" class="star-empty"></ion-icon
-                ></ng-template>
-                <ion-icon
-                  name="star-sharp"
-                  *ngIf="best.rate > 3 else elseBlock"
-                ></ion-icon>
-                <ng-template #elseBlock
-                  ><ion-icon name="star" class="star-empty"></ion-icon
-                ></ng-template>
-                <ion-icon
-                  name="star-sharp"
-                  *ngIf="best.rate > 4 else elseBlock"
-                ></ion-icon>
-                <ng-template #elseBlock
-                  ><ion-icon name="star" class="star-empty"></ion-icon
-                ></ng-template>
-                <ion-icon
-                  name="star-sharp"
-                  *ngIf="best.rate > 5 else elseBlock"
-                ></ion-icon>
-                <ng-template #elseBlock
-                  ><ion-icon name="star" class="star-empty"></ion-icon
-                ></ng-template>
-              </ion-col>
-              <ion-col size="6">
-                <span>{{ best.price.toFixed(2) }}€</span>
-              </ion-col>
-            </ion-row>
-          </ion-card-content>
+    <ion-row><!-- Start row top content -->
+        <ion-card class="card-home-top">
+        <ion-card-content>
+            <ion-card-title>Réalisez vos rêves !</ion-card-title>
+            <p class="desc-top">
+            Reconversion professionnels, Améliorer ces skills. Avec SkillUp vos
+            objectifs seront atteints !
+            </p>
+        </ion-card-content>
         </ion-card>
-      </ion-slide>
-      <ion-slide class="slide1">
-        <h3 routerLink="course">Afficher tout</h3>
-      </ion-slide>
-    </ion-slides>
-  </ion-row>
-  <ion-row>
-    <ion-row no-padding class="category-banner">
-      <h2>Publié récemment</h2>
-    </ion-row>
-    <ion-slides [options]="sliderConfig">
-      <ion-slide class="slide1" *ngFor="let recentCourse of recentCoursesCat">
-        <ion-card class="card-home">
-          <ion-card-header class="card-body">
-            <img [src]="recentCourse.image" />
-          </ion-card-header>
-          <ion-card-content>
-            <div>
-              <h2 (click)="courComponent(recentCourse.id)">
-                {{ recentCourse.title.substring(0, 25) }}...
-              </h2>
-            </div>
-
-            <ion-row class="auteur">
-              <ion-col size="6" class="cat">
-                <p *ngFor="let cat of recentCourse.categorie">{{cat.name}}</p>
-              </ion-col>
-              <ion-col size="1"> | </ion-col>
-              <ion-col size="5" class="ion-text-end">
-                <cite>{{ recentCourse.author }}</cite>
-              </ion-col>
-            </ion-row>
-            <ion-row class="card-footer">
-              <ion-col size="6">
-                <ion-icon
-                  name="star-sharp"
-                  *ngIf="recentCourse.rate > 1 else elseBlock"
-                ></ion-icon>
-                <ng-template #elseBlock
-                  ><ion-icon name="star" class="star-empty"></ion-icon
-                ></ng-template>
-                <ion-icon
-                  name="star-sharp"
-                  *ngIf="recentCourse.rate > 2 else elseBlock"
-                ></ion-icon>
-                <ng-template #elseBlock
-                  ><ion-icon name="star" class="star-empty"></ion-icon
-                ></ng-template>
-                <ion-icon
-                  name="star-sharp"
-                  *ngIf="recentCourse.rate > 3 else elseBlock"
-                ></ion-icon>
-                <ng-template #elseBlock
-                  ><ion-icon name="star" class="star-empty"></ion-icon
-                ></ng-template>
-                <ion-icon
-                  name="star-sharp"
-                  *ngIf="recentCourse.rate > 4 else elseBlock"
-                ></ion-icon>
-                <ng-template #elseBlock
-                  ><ion-icon name="star" class="star-empty"></ion-icon
-                ></ng-template>
-                <ion-icon
-                  name="star-sharp"
-                  *ngIf="recentCourse.rate > 5 else elseBlock"
-                ></ion-icon>
-                <ng-template #elseBlock
-                  ><ion-icon name="star" class="star-empty"></ion-icon
-                ></ng-template>
-              </ion-col>
-              <ion-col size="6">
-                <span>{{ recentCourse.price.toFixed(2) }}€</span>
-              </ion-col>
-            </ion-row>
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide class="slide1">
-        <h3 routerLink="course">Afficher tout</h3>
-      </ion-slide>
-    </ion-slides>
-  </ion-row>
+    </ion-row><!-- End row top content -->
+    <ion-row class="row-star"><!-- Start row best course -->
+        <h2 class="btn-star" color="black">Les mieux notées</h2>
+        <ion-slides [options]="sliderConfig">
+            <ion-slide class="slide1" *ngFor="let best of bestCoursesCat">
+                <ion-card class="card-home">
+                    <ion-card-header class="card-body">
+                        <img [src]="best.image" />
+                    </ion-card-header>
+                    <ion-card-content>
+                        <div>
+                            <h2 (click)="courComponent(best.id)">
+                                {{ best.title.substring(0, 25) }}...
+                            </h2>
+                        </div>
+                        <ion-row class="auteur">
+                            <ion-col size="6" class="cat">
+                                <p *ngFor="let cat of best.categorie">{{cat.name}}</p>
+                            </ion-col>
+                            <ion-col size="1"> | </ion-col>
+                            <ion-col size="5" class="ion-text-end">
+                                <cite>{{ best.author }}</cite>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="card-footer">
+                            <ion-col size="6">
+                                <ion-icon
+                                    name="star-sharp"
+                                    *ngIf="best.rate > 1 else elseBlock">
+                                </ion-icon>
+                                <ng-template #elseBlock>
+                                    <ion-icon name="star" class="star-empty"></ion-icon>
+                                </ng-template>
+                                <ion-icon
+                                    name="star-sharp"
+                                    *ngIf="best.rate > 2 else elseBlock">
+                                </ion-icon>
+                                <ng-template #elseBlock>
+                                    <ion-icon name="star" class="star-empty"></ion-icon>
+                                </ng-template>
+                                <ion-icon
+                                    name="star-sharp"
+                                    *ngIf="best.rate > 3 else elseBlock">
+                                </ion-icon>
+                                <ng-template #elseBlock>
+                                    <ion-icon name="star" class="star-empty"></ion-icon>
+                                </ng-template>
+                                <ion-icon
+                                    name="star-sharp"
+                                    *ngIf="best.rate > 4 else elseBlock">
+                                </ion-icon>
+                                <ng-template #elseBlock>
+                                    <ion-icon name="star" class="star-empty"></ion-icon>
+                                </ng-template>
+                                <ion-icon
+                                    name="star-sharp"
+                                    *ngIf="best.rate > 5 else elseBlock">
+                                </ion-icon>
+                                <ng-template #elseBlock>
+                                    <ion-icon name="star" class="star-empty"></ion-icon>
+                                </ng-template>
+                            </ion-col>
+                            <ion-col size="6">
+                                <span>{{ best.price.toFixed(2) }}€</span>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
+            </ion-slide>
+            <ion-slide class="slide1">
+                <h3 routerLink="course">Afficher tout</h3>
+            </ion-slide>
+        </ion-slides>
+    </ion-row><!-- End row best course -->
+    <ion-row><!-- Start row recent course -->
+        <ion-row no-padding class="category-banner">
+            <h2>Publié récemment</h2>
+        </ion-row>
+        <ion-slides [options]="sliderConfig">
+            <ion-slide class="slide1" *ngFor="let recentCourse of recentCoursesCat">
+                <ion-card class="card-home">
+                    <ion-card-header class="card-body">
+                        <img [src]="recentCourse.image" />
+                    </ion-card-header>
+                    <ion-card-content>
+                        <div>
+                            <h2 (click)="courComponent(recentCourse.id)">
+                                {{ recentCourse.title.substring(0, 25) }}...
+                            </h2>
+                        </div>
+                        <ion-row class="auteur">
+                            <ion-col size="6" class="cat">
+                                <p *ngFor="let cat of recentCourse.categorie">{{cat.name}}</p>
+                            </ion-col>
+                            <ion-col size="1"> | </ion-col>
+                            <ion-col size="5" class="ion-text-end">
+                                <cite>{{ recentCourse.author }}</cite>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="card-footer">
+                            <ion-col size="6">
+                                <ion-icon
+                                    name="star-sharp"
+                                    *ngIf="recentCourse.rate > 1 else elseBlock">
+                                </ion-icon>
+                                <ng-template #elseBlock>
+                                    <ion-icon name="star" class="star-empty"></ion-icon>
+                                </ng-template>
+                                <ion-icon
+                                    name="star-sharp"
+                                    *ngIf="recentCourse.rate > 2 else elseBlock">
+                                </ion-icon>
+                                <ng-template #elseBlock>
+                                    <ion-icon name="star" class="star-empty"></ion-icon>
+                                </ng-template>
+                                <ion-icon
+                                    name="star-sharp"
+                                    *ngIf="recentCourse.rate > 3 else elseBlock">
+                                </ion-icon>
+                                <ng-template #elseBlock>
+                                    <ion-icon name="star" class="star-empty"></ion-icon>
+                                </ng-template>
+                                <ion-icon
+                                    name="star-sharp"
+                                    *ngIf="recentCourse.rate > 4 else elseBlock">
+                                </ion-icon>
+                                <ng-template #elseBlock>
+                                    <ion-icon name="star" class="star-empty"></ion-icon>
+                                </ng-template>
+                                <ion-icon
+                                    name="star-sharp"
+                                    *ngIf="recentCourse.rate > 5 else elseBlock">
+                                </ion-icon>
+                                <ng-template #elseBlock>
+                                    <ion-icon name="star" class="star-empty"></ion-icon>
+                                </ng-template>
+                            </ion-col>
+                            <ion-col size="6">
+                                <span>{{ recentCourse.price.toFixed(2) }}€</span>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
+            </ion-slide>
+            <ion-slide class="slide1">
+                <h3 routerLink="course">Afficher tout</h3>
+            </ion-slide>
+        </ion-slides>
+    </ion-row><!-- End row recent course -->
 </ion-content>

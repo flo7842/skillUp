@@ -1,15 +1,15 @@
 ion-header{
     ion-toolbar{
-      color: white;
-      --background: #7353a2;
+        --background: #7353a2;
+        color: white;
     }
-      .top-row{
+    .top-row{
         display: flex;
         justify-content: flex-end;
         margin-right: 2rem;
         ion-icon{
-          color: white;
-          font-size: 2rem;
+            color: white;
+            font-size: 2rem;
         }
     }
 }
@@ -17,11 +17,10 @@ ion-content{
     --background: #f6efff;
     .ion-text-end{
         ion-button{
-
             border: none;
             ion-icon{
-               font-size: 1.5rem;
-               color: crimson;
+                color: crimson;
+                font-size: 1.5rem;
             }
         }
     }
@@ -29,18 +28,14 @@ ion-content{
         max-width: 100%;
         border: 0;
     }
-
     ion-list{
         padding-top: 0;
         padding-bottom: 0;
         ion-item{
-            
             padding-top: 0;
             padding-bottom: 0;
             ion-button{
-
                 border: none;
-                
             }
         }
         .ion-align-self-center{
@@ -52,25 +47,19 @@ ion-content{
                     color: #011627!important;
                 }
             }
-            
         }
         .col-close{
-            
-      
-            
             ion-button{
                 font-size: 10px;
-                ion-icon{
-                   
+                ion-icon{ 
                     color: #E04853; 
                 }
             }
         }
         .title{
-            
             ion-col{
-                font-size: 0.8rem;
                 color: black;
+                font-size: 0.8rem;
             }
             .ion-text-end{
                 display: flex;
@@ -78,21 +67,19 @@ ion-content{
                 align-items: center;
             }
         }
-        
         .ion-text-center{
+            height: 20vh;
             font-size: 1.5rem;
             margin-top: 10rem;
             margin-bottom: 5rem;
-            height: 20vh;
         }
-        
         .amount{
             text-align: center;
         }
         .row-total{
+            color: black;
             margin-top: 3rem;
             font-weight: bold;
-            color: black;
         }
     }
     .empty{
@@ -102,5 +89,4 @@ ion-content{
         --background: #7353a2;
         color: white;
     }
-
 }

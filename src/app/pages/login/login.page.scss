@@ -1,12 +1,11 @@
 .errorField {
     border-bottom: #ff0062;
-    
     --highlight-background: #ff0062;
 }
 .goodField {
-border-bottom: #12eb48;
---border-color: #12eb48;
---highlight-background: #12eb48;
+    border-bottom: #12eb48;
+    --border-color: #12eb48;
+    --highlight-background: #12eb48;
 }
 h1, h2{
     font-size: 1.2rem;
@@ -22,7 +21,6 @@ ion-content{
     --background: url('../../../assets/image/fond.png') no-repeat center center / cover;
     .container{
         margin: 0 1rem 0 1rem;
-
         .top-row{
             text-align: center;
             h1{
@@ -31,10 +29,8 @@ ion-content{
                 color: white;
             }
         }
-
         .form{
             margin-top: 8rem;
-            
             ion-item{
                 --background: transparent;
                 width: 85%;
@@ -42,15 +38,13 @@ ion-content{
                 --padding-start: 0px;
             }
         }
-    
         .forgot-password{
-            margin-top: 8px;
-            margin-right: 2rem;
-            font-size: 0.8rem;
             display: block;
             text-align: end;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            margin-right: 2rem;
         }
-
         .login-row{
             margin-top: 1rem;
             ion-button{
@@ -60,11 +54,10 @@ ion-content{
                 font-size: 1.1rem;
                 border-radius: 5px;
             }
-
         }
         a{
-            font-size: 1rem;
             color: #020122;
+            font-size: 1rem;
         }
     }
 }

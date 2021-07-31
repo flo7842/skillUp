@@ -3,7 +3,7 @@ ion-header{
       color: white;
       --background: #7353a2;
     }
-      .top-row{
+    .top-row{
         display: flex;
         justify-content: flex-end;
         margin-right: 2rem;
@@ -11,9 +11,8 @@ ion-header{
             margin-left: 2rem;
           --background: transparent;
         }
-      }
-  }
-
+    }
+}
 ion-content{
     --background: #f6efff;
     h2{
@@ -32,7 +31,6 @@ ion-content{
         }
     }
     ion-row{
-        
         ion-col{
             font-size: 0.6rem;
             display: flex;
@@ -44,7 +42,6 @@ ion-content{
                 text-align: center;
             }
         }
-
         .invoice{
             align-content: center;
         }
@@ -53,7 +50,6 @@ ion-content{
         font-size: 0.5rem;
         --background: #7353a2;
     }
-
     .return_profile{
         display: flex;
         justify-content: center;
@@ -66,7 +62,6 @@ ion-content{
             color: #7353a2;
         }
     }
-
     .empty-command{
         text-align: center;
     }

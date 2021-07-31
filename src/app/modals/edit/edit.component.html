@@ -1,96 +1,92 @@
 
 <ion-header>
-  <ion-toolbar>
-    <ion-row class="top-row" size="12">
-      <ion-button (click)="close()">
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </ion-button>
-      <ion-title>Éditer</ion-title>
-    </ion-row>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-row class="top-row" size="12">
+            <ion-button (click)="close()">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title>Éditer</ion-title>
+        </ion-row>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="container">
-    <ion-row>
-      <ion-col class="ion-text-center">
-        <img [src]="user.avatar" alt="avatar de l'utilisateur" />
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <h2>Mes informations</h2>
-    </ion-row>
-    <ion-row class="form">
-      <ion-col size="12">
-        <ion-item [ngClass]="isErrorMail ? 'errorField' : 'goodField'">
-          <ion-label position="floating">Email</ion-label>
-          <ion-input type="email" (keyup)="checkEmail()" [(ngModel)]="user.email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Nom</ion-label>
-          <ion-input type="text" [(ngModel)]="user.lastname"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Prénom</ion-label>
-          <ion-input type="text" [(ngModel)]="user.firstname"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">avatar</ion-label>
-          <ion-input type="text" [(ngModel)]="user.avatar"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Date d'anniversaire</ion-label>
-          <ion-input type="date" [(ngModel)]="user.birth_date"></ion-input>
-        </ion-item>
-        <ion-item [ngClass]="isErrorPhone ? 'errorField' : 'goodField'">
-          <ion-label position="floating">Tel</ion-label>
-          <ion-input type="tel" (keyup)="checkPhone()" [(ngModel)]="user.phone_number"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Nom rue</ion-label>
-          <ion-input type="text" [(ngModel)]="user.street_name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">N° rue</ion-label>
-          <ion-input type="text" [(ngModel)]="user.street_number"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Batiment</ion-label>
-          <ion-input type="text" [(ngModel)]="user.batiment"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Code Postal</ion-label>
-          <ion-input type="text" [(ngModel)]="user.postal_code"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12">
-          <ion-button (click)="editProfile()" expand="full">Modifier</ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row class="update-pass">
-      <ion-col size="2" class="ico-pass">
-        <ion-icon *ngIf="hide; else elseBlock" name="lock-open-outline"></ion-icon>
-        <ng-template #elseBlock><ion-icon name="lock-closed-outline"></ion-icon></ng-template>
-      </ion-col>
-      <ion-col class="inp-pass" size="10">
-        <p (click)="ngIfCtrl()">Modifier mon mot de passe</p>
-      </ion-col>
-      <ion-row>
+    <div class="container">
         <ion-row>
-          <ion-col class="reset">
-            <ion-item *ngIf="hide">
-              <ion-label position="floating">Ancien mot de passe</ion-label>
-              <ion-input type="password" [(ngModel)]="oldPass"></ion-input>
-            </ion-item>
-            <ion-item *ngIf="hide">
-              <ion-label position="floating">Nouveau mot de passe</ion-label>
-              <ion-input type="password" [(ngModel)]="newPass"></ion-input>
-            </ion-item>
-            <ion-col class="col-reset">
-              <ion-button *ngIf="hide" (click)="updatePass()" expand="full">Modifier mon mot de passe</ion-button>
+            <ion-col class="ion-text-center">
+                <img [src]="user.avatar" alt="avatar de l'utilisateur" />
             </ion-col>
-          </ion-col>
         </ion-row>
-      </ion-row>
-    </ion-row>
+        <ion-row>
+            <h2>Mes informations</h2>
+        </ion-row>
+        <ion-row class="form">
+            <ion-col size="12">
+                <ion-item [ngClass]="isErrorMail ? 'errorField' : 'goodField'">
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input type="email" (keyup)="checkEmail()" [(ngModel)]="user.email"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Nom</ion-label>
+                    <ion-input type="text" [(ngModel)]="user.lastname"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Prénom</ion-label>
+                    <ion-input type="text" [(ngModel)]="user.firstname"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">avatar</ion-label>
+                    <ion-input type="text" [(ngModel)]="user.avatar"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Date d'anniversaire</ion-label>
+                    <ion-input type="date" [(ngModel)]="user.birth_date"></ion-input>
+                </ion-item>
+                <ion-item [ngClass]="isErrorPhone ? 'errorField' : 'goodField'">
+                    <ion-label position="floating">Tel</ion-label>
+                    <ion-input type="tel" (keyup)="checkPhone()" [(ngModel)]="user.phone_number"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Nom rue</ion-label>
+                    <ion-input type="text" [(ngModel)]="user.street_name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">N° rue</ion-label>
+                    <ion-input type="text" [(ngModel)]="user.street_number"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Batiment</ion-label>
+                    <ion-input type="text" [(ngModel)]="user.batiment"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Code Postal</ion-label>
+                    <ion-input type="text" [(ngModel)]="user.postal_code"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col size="12">
+                <ion-button (click)="editProfile()" expand="full">Modifier</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row class="update-pass">
+            <ion-col size="2" class="ico-pass">
+                <ion-icon *ngIf="hide; else elseBlock" name="lock-open-outline"></ion-icon>
+                <ng-template #elseBlock><ion-icon name="lock-closed-outline"></ion-icon></ng-template>
+            </ion-col>
+            <ion-col class="inp-pass" size="10">
+                <p (click)="ngIfCtrl()">Modifier mon mot de passe</p>
+            </ion-col>
+            <ion-col class="reset" size="12">
+                <ion-item *ngIf="hide">
+                    <ion-label position="floating">Ancien mot de passe</ion-label>
+                    <ion-input type="password" [(ngModel)]="oldPass"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="hide">
+                    <ion-label position="floating">Nouveau mot de passe</ion-label>
+                    <ion-input type="password" [(ngModel)]="newPass"></ion-input>
+                </ion-item>
+                <ion-col class="col-reset">
+                    <ion-button *ngIf="hide" (click)="updatePass()" expand="full">Modifier mon mot de passe</ion-button>
+                </ion-col>
+            </ion-col>
+        </ion-row>
     </div>
 </ion-content>

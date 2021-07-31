@@ -1,54 +1,49 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-row class="top-row" size="12">
-      <ion-title>Mes achats</ion-title>
-    </ion-row>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-row class="top-row" size="12">
+            <ion-title>Mes achats</ion-title>
+        </ion-row>
+    </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <div *ngIf="commands.length !== 0 || arrayUniqueByKey.length !== 0; else elseBlock">
-
-    <div *ngIf="arrayUniqueByKey.length !== 0;">
-      <ion-row>
-        <h2>Commande multiple</h2>
-      </ion-row>
-      <ion-row class="elem">
-        <ion-col>Achat</ion-col>
-        <ion-col>Date</ion-col>
-        <ion-col>Reçu</ion-col>
-      </ion-row>
-        <ion-row class="item" *ngFor="let command of arrayUniqueByKey">
-          <ion-col><p>Voir le détails</p></ion-col>
-          <ion-col><p>{{command.dateCommand}}</p></ion-col>
-         
-          <ion-col class="invoice">
-            <ion-button (click)="openInvoiceComponent(command.commandId)">Facture</ion-button>
-          </ion-col>
-        </ion-row>
-      </div>
-      <div *ngIf="commands.length !== 0;">
-  
-        <ion-row>
-          <h2>Commande unique</h2>
-        </ion-row>
-        <ion-row class="elem">
-          <ion-col>Achat</ion-col>
-          <ion-col>Date</ion-col>
-          <ion-col>Reçu</ion-col>
-        </ion-row>
-        <ion-row class="item" *ngFor="let command of commands">
-          <ion-col><p>{{command.title}}</p></ion-col>
-          <ion-col><p>{{command.dateCommand}}</p></ion-col>
-          <ion-col class="invoice">
-            <ion-button (click)="openInvoiceComponent(command.commandId)">Facture</ion-button>
-          </ion-col>
-        </ion-row>
-      </div>
-  </div>
-
-  <ng-template #elseBlock><p class="empty-command">Aucun achat effectué</p></ng-template>
-  <ion-row class="return_profile">
-    <ion-icon name="arrow-back-outline"></ion-icon><a routerLink="/profile">Retourner sur le profil</a>
-  </ion-row>
+    <div *ngIf="commands.length !== 0 || arrayUniqueByKey.length !== 0; else elseBlock">
+        <div *ngIf="arrayUniqueByKey.length !== 0;">
+            <ion-row>
+                <h2>Commande multiple</h2>
+            </ion-row>
+            <ion-row class="elem">
+                <ion-col>Achat</ion-col>
+                <ion-col>Date</ion-col>
+                <ion-col>Reçu</ion-col>
+            </ion-row>
+            <ion-row class="item" *ngFor="let command of arrayUniqueByKey">
+                <ion-col><p>Voir le détails</p></ion-col>
+                <ion-col><p>{{command.dateCommand}}</p></ion-col>
+                <ion-col class="invoice">
+                    <ion-button (click)="openInvoiceComponent(command.commandId)">Facture</ion-button>
+                </ion-col>
+            </ion-row>
+        </div>
+        <div *ngIf="commands.length !== 0;">
+            <ion-row>
+                <h2>Commande unique</h2>
+            </ion-row>
+            <ion-row class="elem">
+                <ion-col>Achat</ion-col>
+                <ion-col>Date</ion-col>
+                <ion-col>Reçu</ion-col>
+            </ion-row>
+            <ion-row class="item" *ngFor="let command of commands">
+                <ion-col><p>{{command.title}}</p></ion-col>
+                <ion-col><p>{{command.dateCommand}}</p></ion-col>
+                <ion-col class="invoice">
+                    <ion-button (click)="openInvoiceComponent(command.commandId)">Facture</ion-button>
+                </ion-col>
+            </ion-row>
+        </div>
+    </div>
+    <ng-template #elseBlock><p class="empty-command">Aucun achat effectué</p></ng-template>
+    <ion-row class="return_profile">
+        <ion-icon name="arrow-back-outline"></ion-icon><a routerLink="/profile">Retourner sur le profil</a>
+    </ion-row>
 </ion-content>

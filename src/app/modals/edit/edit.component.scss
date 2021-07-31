@@ -1,9 +1,9 @@
 ion-header{
     ion-toolbar{
-      color: white;
-      --background: #7353a2;
+        --background: #7353a2;
+        color: white;
     }
-      .top-row{
+    .top-row{
         display: flex;
         justify-content: flex-end;
         margin-right: 2rem;
@@ -12,13 +12,13 @@ ion-header{
             --box-shadow: none;
             --background: transparent;
         }
-      }
-  }
+    }
+}
 ion-content{
-  --background: #f6efff;
+    --background: #f6efff;
     h2{
-      font-size: 1.2rem;
-      margin-left: 1rem;
+        font-size: 1.2rem;
+        margin-left: 1rem;
     }
     --background: #f6efff;
     .top-row{
@@ -29,8 +29,8 @@ ion-content{
             align-items: center;
             margin-left: -2rem;
             ion-button{
-                color: #7353a2;
                 --background: none;
+                color: #7353a2;
                 border: none;
             }
         }
@@ -45,20 +45,20 @@ ion-content{
     }
 
     .update-pass{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      .ico-pass{
         display: flex;
-        justify-content: flex-end;
-        ion-icon{
-          font-size: 1.3rem;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        .ico-pass{
+            display: flex;
+            justify-content: flex-end;
+            ion-icon{
+                font-size: 1.3rem;
+            }
         }
-      }
-      .inp-pass{
-        display: flex;
-        justify-content: left;
-      }
+        .inp-pass{
+            display: flex;
+            justify-content: left;
+        }
     }
 }

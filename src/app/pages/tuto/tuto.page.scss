@@ -1,7 +1,7 @@
 ion-header{
     ion-toolbar{
-      color: white;
-      --background: #7353a2;
+        color: white;
+        --background: #7353a2;
     }
       .top-row{
         display: flex;
@@ -9,12 +9,12 @@ ion-header{
         margin-right: 2rem;
         ion-button{
             margin-left: 2rem;
-          --background: transparent;
+            --background: transparent;
         }
     }
 }
 ion-content{
-  --background: #f6efff;
+    --background: #f6efff;
     ion-avatar{
         --border-radius: 10px;
     }

@@ -1,127 +1,122 @@
 ion-header{
     ion-toolbar{
-      color: white;
-      --background: #7353a2;
+        --background: #7353a2;
+        color: white;
     }
-      .top-row{
+    .top-row{
         display: flex;
         justify-content: flex-end;
         margin-right: 2rem;
         ion-icon{
-          color: white;
-          font-size: 2rem;
+            color: white;
+            font-size: 2rem;
         }
     }
 }
 
 ion-content{
-  --background: #f6efff;
-  .category-name{
-    margin-left: 2rem;
-  }
-  ion-card{
-    width: 100%;
-    object-fit: cover;
-    background: #f6efff;
-    box-shadow: 7px 4px 6px 0px #9c9c9c00;
-    border-radius: 15px;
-    ion-card-header{
-        padding-top: 0px !important;
-        padding-bottom: 0px !important;
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-         img {
-          width: 100%;
-          object-fit: cover;
-          height: 116px;
-          margin-top: 0.5rem;
-          border-radius: 10px;      
-        }
+    --background: #f6efff;
+    .category-name{
+        text-align: center;
+        margin-left: 2rem;
     }
-    h3{
-        margin-top: 15px;
-        margin-bottom: 2px!important;
-        font-size: 15px;
-        text-align: left;
-        color: #D4C2F0;
-        
-    }
-    span{
-      background: #f39d84;
-      border-radius: 17px;
-      padding: 6px;
-    }
-  
-  
-    ion-card-content{
-        margin: 0 0.7rem 0 0.7rem;
-        padding-top: 0;
-        display: flex;
-        font-size: 11px;
-        flex-direction: column;
-        padding-left: 0 !important;
-        padding-right: 0!important;
-        
-        h2{
-          margin-left: 2rem;
-          text-align: left;
-          font-weight: 600;
-          font-size: 1rem;
-          color: #7353a2;
-        }
-        .auteur{
-          color: black;
-          align-items: center;
-          .cat{
-            p{
-              font-size: 0.6rem;
-              margin: 0 1px 0 1px;
-            }
-          }
-            cite{
-              font-style: normal;
-              font-size: 0.8rem;
-             
-              display: inline-block;
-              margin: left;
-              color: black;
+    ion-card{
+        background: #f6efff;
+        width: 100%;
+        box-shadow: 7px 4px 6px 0px #9c9c9c00;
+        object-fit: cover;
+        border-radius: 15px;
+        ion-card-header{
+            padding-top: 0px !important;
+            padding-right: 0px !important;
+            padding-bottom: 0px !important;
+            padding-left: 0px !important;
+            img {
+                width: 100%;
+                height: 116px;
+                object-fit: cover;
+                margin-top: 0.5rem;
+                border-radius: 10px;      
             }
         }
-        ion-col{
+        h3{
+            color: #D4C2F0;
+            font-size: 15px;
+            text-align: left;
+            margin-top: 15px;
+            margin-bottom: 2px!important;
+        }
+        span{
+            background: #f39d84;
+            padding: 6px;
+            border-radius: 17px;
+        }
+        ion-card-content{
             display: flex;
-            
-           
-            .star-empty{
-                color: slategrey;;
-            }
-            ion-icon{
-                color: yellow;
+            flex-direction: column;
+            margin: 0 0.7rem 0 0.7rem;
+            padding-top: 0;
+            font-size: 11px;
+            padding-left: 0 !important;
+            padding-right: 0!important;
+        
+            h2{
+                color: #7353a2;
+                text-align: left;
+                font-weight: 600;
                 font-size: 1rem;
             }
-        }
-        
-        .card-footer{
-          display: flex;
-          align-items: center;
-            ion-col{
-                display: flex;
-                justify-content: center;
-                padding-left: 0;
-                ion-icon{
-                    font-size: 1.3rem;
-                    
+            .auteur{
+                align-items: center;
+                color: black;
+                .cat{
+                    p{
+                        font-size: 0.6rem;
+                        margin: 0 1px 0 1px;
+                    }
+                }
+                cite{
+                    display: inline-block;
+                    color: black;
+                    font-style: normal;
+                    font-size: 0.8rem;
+                    margin: left;
                 }
             }
-            span{
-                font-size: 0.8rem;
-                font-weight: 600;
-                color: white;
+            ion-col{
+                display: flex;
+                .star-empty{
+                    color: slategrey;;
+                }
+                ion-icon{
+                    color: yellow;
+                    font-size: 1rem;
+                }
             }
-          }
-          ion-button{
-            margin-top: 1rem;
-            --background: #7353a2;
-          }
+            .card-footer{
+                display: flex;
+                align-items: center;
+                ion-col{
+                    display: flex;
+                    justify-content: center;
+                    padding-left: 0;
+                    ion-icon{
+                        font-size: 1.3rem;
+                    }
+                }
+                span{
+                    color: white;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                }
+            }
+            ion-button{
+                --background: #7353a2;
+                margin-top: 1rem;
+                button.button-native{
+                    border-radius: 10px;
+                }
+            }
+        }
     }
-  }
 }

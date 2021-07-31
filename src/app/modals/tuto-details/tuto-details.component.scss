@@ -1,24 +1,24 @@
 ion-header{
-  ion-toolbar{
-    color: white;
-    --background: #7353a2;
-    ion-button{
-      --box-shadow: none;
-      --background: transparent;
+    ion-toolbar{
+        color: white;
+        --background: #7353a2;
+        ion-button{
+        --box-shadow: none;
+        --background: transparent;
+        }
     }
-  }
-  .top-row{
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 2rem;
-    ion-button{
-        margin-left: 2rem;
-      --background: transparent;
+    .top-row{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 2rem;
+        ion-button{
+            margin-left: 2rem;
+        --background: transparent;
+        }
     }
-  }
 }
 ion-content{
-  --background: #f6efff;
+    --background: #f6efff;
     h1{
         margin-top: 5rem;
         font-size: 1rem;
