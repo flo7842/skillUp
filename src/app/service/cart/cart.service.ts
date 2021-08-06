@@ -20,7 +20,7 @@ export interface Product {
 })
 export class CartService {
 
-	url: string = "https://flodevfullstack.com/api";
+	url: string = "http://localhost:3000/api";
 	token: string;
 	private cart = [];
 	private cartItemCount = new BehaviorSubject(0);

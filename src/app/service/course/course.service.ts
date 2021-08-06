@@ -10,7 +10,7 @@ import { Course } from '../../interfaces/course';
 })
 export class CourseService {
 
-    url: string = "https://flodevfullstack.com/api";
+    url: string = "http://localhost:3000/api";
     token: string;
     
     constructor(

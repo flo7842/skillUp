@@ -9,7 +9,7 @@ import { Platform } from '@ionic/angular';
 })
 export class CompanyService {
 
-    url: string = "https://flodevfullstack.com/api";
+    url: string = "http://localhost:3000/api";
 
     token: string;
 

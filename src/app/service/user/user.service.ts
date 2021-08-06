@@ -9,7 +9,7 @@ import { User } from './../../interfaces/user';
 })
 export class UserService {
 
-    url: string = "https://flodevfullstack.com/api";
+    url: string = "http://localhost:3000/api";
 
     user: any;
     userRole: any;
