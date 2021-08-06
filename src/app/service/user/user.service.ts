@@ -9,7 +9,7 @@ import { User } from './../../interfaces/user';
 })
 export class UserService {
 
-    url: string = "http://localhost:3000/api";
+    url: string = "https://flodevfullstack.com/api";
 
     user: any;
     userRole: any;
@@ -155,6 +155,29 @@ export class UserService {
                 }else{
                     resolve(data.data);
                 }
+            });
+        });
+    }
+
+    async updateImg(id: number, avatar: any){
+        return new Promise(async(resolve, rejects) => {
+
+            if (this.platform.is("desktop")) {
+                this.token = await JSON.parse(localStorage.getItem("token"))
+            } else {
+                this.token = JSON.parse(await this.storage.getItem("token"))
+            }
+            
+            
+            this.http.put(this.url + "/update-img/"+ id, {avatar: avatar}, { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}).subscribe((data: any) => {
+                //(!data.success) ? rejects(data.message): resolve(data);
+                if(!data){
+                rejects(false)
+            }else{
+                resolve(data);
+            }
+            }, (err) => {
+                rejects(false)
             });
         });
     }

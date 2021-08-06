@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.iml" filepath="$PROJECT_DIR$/.idea/modules/android.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/889295836/android.capacitor-android.iml" filepath="$PROJECT_DIR$/.idea/modules/889295836/android.capacitor-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1858417346/android.capacitor-browser.iml" filepath="$PROJECT_DIR$/.idea/modules/1858417346/android.capacitor-browser.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/capacitor-cordova-android-plugins/android.capacitor-cordova-android-plugins.iml" filepath="$PROJECT_DIR$/.idea/modules/capacitor-cordova-android-plugins/android.capacitor-cordova-android-plugins.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-425508027/android.capacitor-video-player.iml" filepath="$PROJECT_DIR$/.idea/modules/-425508027/android.capacitor-video-player.iml" />
     </modules>

@@ -9,7 +9,7 @@ import { User } from '../../interfaces/user';
 })
 export class AuthService {
 
-    url: string = "http://localhost:3000/api";
+    url: string = "https://flodevfullstack.com/api";
 
     constructor(private http: HttpClient, private toast: ToastController) { }
 

@@ -11,9 +11,12 @@
 </ion-header>
 <ion-content>
     <div class="container">
+        <img [src] = "image" *ngIf="image">
+  <ion-button (click)="addPhoto()">Ajouter une photo</ion-button>
+  <ion-button (click)="saveImage()">Sauvegarder une photo</ion-button>
         <ion-row>
             <ion-col class="ion-text-center">
-                <img [src]="user.avatar" alt="avatar de l'utilisateur" />
+                <img [src]="user.avatar" *ngIf="user.avatar" alt="avatar de l'utilisateur" />
             </ion-col>
         </ion-row>
         <ion-row>

@@ -7,6 +7,7 @@ import { IonicModule, IonicRouteStrategy, NavParams} from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 
 import { ​​HttpClientModule​​ } from '@angular/common/http';
 
@@ -26,7 +27,7 @@ import { CourseComponent } from './components/course/course.component';
   declarations: [AppComponent, ForgotPasswordComponent, EditComponent, UpdatePasswordComponent, TutoDetailsComponent, InvoiceComponent, CourseComponent],
   entryComponents: [ForgotPasswordComponent, EditComponent, UpdatePasswordComponent, TutoDetailsComponent, InvoiceComponent, CourseComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ​​HttpClientModule​​, FormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NativeStorage, CartPage, PayPal, NavParams],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NativeStorage, CartPage, PayPal, NavParams, Camera],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

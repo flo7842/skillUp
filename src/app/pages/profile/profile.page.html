@@ -1,7 +1,7 @@
 <ion-content>
     <ion-row class="logo">
         <ion-col size="12" class="ion-align-self-center">
-            <img [src]="avatar">
+            <img [src]="user.avatar" *ngIf="user.avatar">
         </ion-col>
     </ion-row>
     <ion-row>
