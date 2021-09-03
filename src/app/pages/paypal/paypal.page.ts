@@ -33,13 +33,11 @@ export class PaypalPage implements OnInit {
         private modalCtrl: ModalController,
         private storage: NativeStorage,
         private platform: Platform,
+        private payPal: PayPal, 
         private cartService: CartService,
         private invoiceService: InvoiceService,
-        private payPal: PayPal, 
         private cartPage: CartPage, 
-    ) {
-        
-    }
+    ) {}
 
     close(){
         this.modalCtrl.dismiss();

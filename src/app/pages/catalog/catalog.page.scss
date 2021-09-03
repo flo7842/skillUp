@@ -11,6 +11,12 @@ ion-header{
             color: white;
             font-size: 2rem;
         }
+        .hidden-cart-count{
+            visibility: hidden;
+        }
+        .visible-cart-count{
+            visibility: visible;
+        }
     }
 }
 

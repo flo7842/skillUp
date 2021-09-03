@@ -7,7 +7,7 @@
             </a>
             <div
                 class="cart-length"
-                [ngClass]="cartItemCount > 0 ? '': 'hidden-cart-count'"
+                [ngClass]="cartItemCount.value > 0 ? 'visible-cart-count': 'hidden-cart-count'"
             >
                 {{ cartItemCount | async }}
             </div>

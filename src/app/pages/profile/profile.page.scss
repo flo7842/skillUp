@@ -1,15 +1,9 @@
 ion-content{
     --background: #f6efff;
-    .top{
-        display: flex;
-        justify-content: center;
-        margin-top: 3rem;
-        div{
-            img{
-                width: 80px;
-            }
-        }
-    }
+        
+            
+    
+    
     h2{
         font-size: 1.2rem;
         margin-left: 1rem;
@@ -21,21 +15,53 @@ ion-content{
         height: 200px;
     }
     .logo {
-
-        ion-col {
-            margin-bottom: 2rem;
-            text-align: center;
+        background: #7353a2;
+  
+            .turn{
+                display: flex;
+                align-content: center;
+                align-items: center;
+                justify-content: center;
+                width: 50%;
+                position: relative;
+                margin: auto;
+                margin-top: 8rem;
+                #avatar{
+                    width: 100px;
+                    height: 100px;
+                    position: absolute;
+                    --border-radius: 50%;
+                    border: 2px solid #7353A5;
+                }
+                ion-button{
+                    color: #7353a2;
+                    position: absolute;
+                    top: 12px;
+                    left: 20px;
+                    font-size: 1.5rem;
+                    border-radius: 50%;
+                    --background: transparent;
+                    --box-shadow: none;
+                    ion-icon{
+                        font-size: 1.6rem;
+                        color: #7353a2;
+                        background: #f6efff;
+                        border: 2px solid;
+                        border-radius: 50%;
+                    }
+                }
+            }
             img {
                 width: 100px;
                 border-radius: 50%;
             }
-        }
+        
         
     }
     .user_name{
         font-size: 1.5rem;
         font-weight: 550;
-        margin-top: -2rem;
+        margin-top: 4rem;
         span{
             color: #544a61;
         }

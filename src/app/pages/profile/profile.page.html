@@ -1,12 +1,17 @@
 <ion-content>
-    <ion-row class="logo">
-        <ion-col size="12" class="ion-align-self-center">
-            <img [src]="user.avatar" *ngIf="user.avatar">
-        </ion-col>
+    <ion-row class="logo" size="12">
+        
+            <div class="turn" *ngIf="avatar">
+                <img [src]="avatar" *ngIf="avatar" id="avatar">
+                <ion-button (click)="addPhoto()"><ion-icon name="add-outline">
+                    </ion-icon>
+                </ion-button>
+            </div>
+        
     </ion-row>
     <ion-row>
         <ion-col size="12" class="user_name ion-text-center">
-            <span>Profil de {{userName}}</span>
+            <span>Profil de {{user.user_name}}</span>
         </ion-col>
     </ion-row>
     <ion-row size="12" class="info">

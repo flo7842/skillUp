@@ -5,9 +5,12 @@
             <a (click)="openCart()" #cart>
                 <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
             </a>
-            <div class="cart-length">
-                {{ cartItemCount | async }}
-            </div>
+            <div
+                class="cart-length"
+                [ngClass]="cartItemCount.value > 0 ? 'visible-cart-count': 'hidden-cart-count'"
+                >
+                    {{ cartItemCount | async }}
+                </div>
         </ion-row>
     </ion-toolbar>
 </ion-header>

@@ -52,13 +52,14 @@ export class CatalogPage implements OnInit {
     async ngOnInit() {
 
         this.autoLoader();
-
+        this.cartItemCount = this.cartService.getCartItemCount();
         this.coursesNode = await this.courseService.getCourseByCategoryName('NodeJS');
         this.coursesJs = await this.courseService.getCourseByCategoryName('JavaScript');
         this.coursesSql = await this.courseService.getCourseByCategoryName('SQL');
         this.coursesPhp = await this.courseService.getCourseByCategoryName('PHP');
         this.coursesSymfony = await this.courseService.getCourseByCategoryName('Symfony');
-        this.cartItemCount = this.cartService.getCartItemCount();
+        
+     
         this.dismissLoader();
     }
 
@@ -87,10 +88,17 @@ export class CatalogPage implements OnInit {
         component: CartPage,
         cssClass: 'cart-modal'
         })
+
+        modal.onDidDismiss().then(async()=>{
+            
+            this.cartItemCount.subscribe()
+            console.log(this.cartItemCount.value)
+        });
+
         modal.present();
     }
 
-  
+    
     /**
      * Method for open cour component
      * @param id 

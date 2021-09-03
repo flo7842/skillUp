@@ -135,6 +135,13 @@ export class HomePage implements OnInit{
             component: CartPage,
             cssClass: 'cart-modal'
         })
+
+        modal.onDidDismiss().then(async()=>{
+         
+            this.cartItemCount = this.cartService.getCartItemCount();
+            console.log(this.cartItemCount)
+        });
+
         modal.present();
     }
 

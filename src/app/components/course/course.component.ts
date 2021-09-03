@@ -33,6 +33,7 @@ export class CourseComponent implements OnInit {
 
     async ngOnInit() {
         this.cartItemCount = this.cartService.getCartItemCount();
+        console.log(this.cartItemCount)
     }
 
     async openCart(){
@@ -40,6 +41,11 @@ export class CourseComponent implements OnInit {
             component: CartPage,
             cssClass: 'cart-modal'
         })
+        modal.onDidDismiss().then(async()=>{
+            
+            this.cartItemCount = this.cartService.getCartItemCount();
+            
+        });
         modal.present();
     }
 
